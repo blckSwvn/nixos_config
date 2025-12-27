@@ -11,7 +11,7 @@
   };
 
   home.packages = with pkgs; [
-    river
+    river-classic
       bibata-cursors
       wlr-randr
       rivercarro

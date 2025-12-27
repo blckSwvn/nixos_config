@@ -39,11 +39,17 @@
     enable = true;
     settings = {
       CPU_SCALING_GOVERN_ON_AC = "performance";
-      CPU_SCALING_GOVERN_ON_BAT = "power";
+      CPU_SCALING_GOVERN_ON_BAT = "powersave";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
       TLP_DEFAULT_MODE = "BAT";
       TLP_PERSISTENT_DEFAULT = 1;
+      SCHED_POWERSAVE_ON_BAT = 1;
+      SCHED_POWERSAVE_ON_AC = 0;
+      USB_AUTOSUSPEND = 1;
+      PCIE_ASPM_ON_BAT = "powersupersave";
+      WIFI_PWR_ON_BAT = "on";
+      USB_BLACKLIST_BTUSB = 0;
     };
   };
 

@@ -86,8 +86,9 @@ require("oil").setup({
 })
 
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "c", "lua", "nix", "css" },
+  ensure_installed = { "c", "lua", "nix", "css", "markdown", "markdown_inline" },
   highlight = { enable = true },
+  indent = { enable = true },
   textobjects = {
     select = {
       enable = true,

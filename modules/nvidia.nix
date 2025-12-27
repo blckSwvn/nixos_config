@@ -1,11 +1,11 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
 
   boot.initrd.kernelModules = [ "nvidia" ];
   boot.blacklistedKernelModules = [ "noveau" ];
 
   boot.kernelModules = [ "nvidia" ];
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.powerManagement.enable = true;
 
@@ -15,13 +15,14 @@
     nvidiaSettings = true;
     open = false;
     prime = {
-      sync.enable = true;
+      offload.enable = true; #allows the GPU to turn of completly instead of idle
+      sync.enable = false; #less needed on wayland
       intelBusId = "PCI:230:0:0";
       nvidiaBusId = "PCI:1:0:0";
     };
   };
 
-  programs.steam.package = pkgs.steam.override {
-    withPrimus = true;
-  };
+  # programs.steam.package = lib.mkForce pkgs.steam.override {
+  #   withPrimus = true;
+  # };
                             }

@@ -1,8 +1,8 @@
 { config, pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
-      ./modules/noveau.nix
-      # ./modules/nvidia.nix
+      # ./modules/noveau.nix
+      ./modules/nvidia.nix
       ./modules/boot.nix
       ./modules/hardware.nix
       ./modules/networking.nix
@@ -56,13 +56,14 @@
   boot.kernelParams = [ "mem_sleep_default=deep" ];
 
 #for laptops laptop 
-  services.logind.extraConfig = ''
-    handleLidSwitch=suspend
-    HandleLidSwitchDocked=ignore
-    IdleAction=suspend
-    IdleActionSec=20min
-    HandlePowerKey=suspend
-    '';
+  services.logind.settings.Login = {
+    handleLidSwitch="suspend";
+    HandleLidSwitchDocked="ignore";
+    IdleAction="suspend";
+    IdleActionSec="20min";
+    HandlePowerKey="suspend";
+  };
+
 
   programs.man.enable = true;
 

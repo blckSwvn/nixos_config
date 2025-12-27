@@ -13,6 +13,7 @@ swaybg -i $HOME/pictures/wallpapers/wallpaper5.* &
 
 sleep 1
 waybar &
+brightnessctl -d intel_backlight set 0 && brightnessctl -d tpacpi::kbd_backlight set 0 &
 
 #startup
 riverctl xcursor-theme Bibata-Modern-Ice

@@ -9,22 +9,25 @@
       bat
       git
       btop
-      fzf
       ripgrep
-      fd
       parted
       gnumake
+    fzf
 #progs
       # modrinth-app
       wineWowPackages.full
 #etc
+    powertop
       cowsay
       fortune
       torsocks
+      tor-browser
+      qbittorrent
       brightnessctl
       tldr
       man-pages
       man-pages-posix
+      liburing
 #DE
       xwayland
       waylock
@@ -34,6 +37,7 @@
       wl-clipboard
       grim
       slurp
+
 #langs/lsps
       clang-tools
       lua-language-server
@@ -43,8 +47,6 @@
 #VMs
       qemu
       quickemu
-      qemu_kvm
-      spice-gtk
       ] ++ (with unstablePkgs; [
       ]);
 
