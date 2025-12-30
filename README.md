@@ -1,4 +1,4 @@
-# NixOS FortKnox
+# NixOS config
 
 ### Short Description  
 Personal NixOS configuration for my laptop.  

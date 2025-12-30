@@ -1,5 +1,5 @@
 {
-  description = "NixOS FortKnox";
+  description = "personal";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";

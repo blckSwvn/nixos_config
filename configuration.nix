@@ -27,10 +27,12 @@
   console.keyMap = "no";
 
 #user
+  programs.fish.enable = true;
+   
   users.users.blckSwan = {
     isNormalUser = true;
     description = "null";
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     extraGroups = [
       "kvm"
         "input"
@@ -50,7 +52,7 @@
   security.sudo.enable = false;
 
   users.users.root = {
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
   };
 
   boot.kernelParams = [ "mem_sleep_default=deep" ];
