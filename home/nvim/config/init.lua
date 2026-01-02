@@ -50,7 +50,6 @@ callback = function ()
 end
 })
 
--- PACKS
 vim.pack.add({
 	{src = "https://github.com/nvim-treesitter/nvim-treesitter"},
 	{src = "https://github.com/stevearc/oil.nvim"},
@@ -69,7 +68,6 @@ vim.pack.add({
 	{src = "https://github.com/chentoast/marks.nvim"},
 })
 
--- PLUGIN CONFIGS
 require("oil").setup({
 	columns = {
 		"mtime",

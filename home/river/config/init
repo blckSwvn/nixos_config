@@ -59,7 +59,8 @@ riverctl map normal $mod2 Space spawn kitty
 riverctl map normal $mod2 b spawn librewolf
 riverctl map normal $mod2 f toggle-fullscreen
 riverctl map normal $mod Q close
-# riverctl map normal $mod2 g spawn "(grim -g "$(slurp)")"
+riverctl map normal $mod2 g spawn 'grim -g "$(slurp)" ~/pictures/$(date +%M:%H_%d-%m-%Y).png | wl-copy'
+
 riverctl map normal $mod Space spawn "wofi --show drun"
 riverctl map normal $mod+Shift E exit
 riverctl map normal $mod f toggle-float
