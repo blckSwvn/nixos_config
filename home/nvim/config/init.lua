@@ -187,21 +187,24 @@ local colors = {
 	blue      = "#4472CA",
 	cyan      = "#3FC8B3",
 	red       = "#DA2C38",
+	purple	  = "#ad0dbd",
 }
 
 local theme = lush(function()
 	return {
+		lineNr	    { fg = colors.purple},
+		CursorLineNr{ fg = colors.red },
 		CursorLine  { bg = grays.black},
 		Visual      { bg = grays.black},
 		Normal      { fg = grays.fg, bg = grays.bg },
 		Cursor      { fg = grays.bg, bg = grays.fg },
-		Comment     { fg = grays.b_black, gui = "italic" },
+		Comment     { fg = colors.purple, gui = "italic" },
 
 		-- Language
 		String      { fg = colors.green},
-		Boolean     { fg = colors.green},         -- true false
+		Boolean     { fg = colors.cyan},
 		Constant    { fg = colors.green},
-		Number      { fg = colors.cyan},            -- cooler than yellow
+		Number      { fg = grays.fg},            -- cooler than yellow
 		Type        { fg = colors.cyan},
 		Keyword     { fg = colors.yellow},
 		PreProc     { fg = colors.yellow},   -- #includes, macros
@@ -210,7 +213,7 @@ local theme = lush(function()
 		Identifier  { fg = grays.fg},
 
 		-- Operators and misc
-		Operator    { fg = grays.fg },              -- neutral, avoids rainbow
+		Operator    { fg = grays.fg},              -- neutral, avoids rainbow
 		Special     { fg = grays.fg},     -- escape chars, regex, unusual
 
 		-- UI
