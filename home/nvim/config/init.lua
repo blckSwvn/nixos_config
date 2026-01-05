@@ -66,6 +66,7 @@ vim.pack.add({
 	{src = "https://github.com/rktjmp/lush.nvim"},
 	{src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"},
 	{src = "https://github.com/chentoast/marks.nvim"},
+	{src = "https://github.com/norcalli/nvim-colorizer.lua"},
 })
 
 require("oil").setup({
@@ -174,61 +175,62 @@ cmp.setup({
 -- LUSH THEME
 local lush = require("lush")
 
-local grays = {
+local g = {
 	fg    = "#DADADA",
+	bb_black = "#b0b0b0",
 	bg    = "#000000",
 	black   = "#202020",
 	b_black = "#505050",
 }
 
-local colors = {
-	green     = "#2db64A",   -- tweaked to feel fresher & consistent
+local c = {
+	-- red = "#eF4F29",
+	green     = "#2db64A",
 	yellow    = "#f0bf00",
 	blue      = "#4472CA",
 	cyan      = "#3FC8B3",
 	red       = "#DA2C38",
-	purple	  = "#ad0dbd",
 }
 
 local theme = lush(function()
 	return {
-		lineNr	    { fg = colors.purple},
-		CursorLineNr{ fg = colors.red },
-		CursorLine  { bg = grays.black},
-		Visual      { bg = grays.black},
-		Normal      { fg = grays.fg, bg = grays.bg },
-		Cursor      { fg = grays.bg, bg = grays.fg },
-		Comment     { fg = colors.purple, gui = "italic" },
+		lineNr	    {fg = c.yellow},
+		CursorLineNr{fg = c.blue, gui = "bold"},
+		CursorLine  {bg = g.black},
+		Visual      {bg = g.b_black},
+		Normal      {fg = g.fg, bg = g.bg },
+		Cursor      {fg = g.bg, bg = g.fg },
+		Comment     {bg = g.bb_black, fg = g.black, gui = "italic" },
 
 		-- Language
-		String      { fg = colors.green},
-		Boolean     { fg = colors.cyan},
-		Constant    { fg = colors.green},
-		Number      { fg = grays.fg},            -- cooler than yellow
-		Type        { fg = colors.cyan},
-		Keyword     { fg = colors.yellow},
-		PreProc     { fg = colors.yellow},   -- #includes, macros
-		Conditional { fg = colors.blue},          -- if/else, etc.
-		Function    { fg = colors.blue},
-		Identifier  { fg = grays.fg},
+		String      {fg = c.green},
+		Boolean     {fg = g.fg},
+		Constant    {fg = c.green},
+		Number      {fg = g.fg},     -- cooler than yellow
+		Type        {fg = c.yellow},
+		Keyword     {fg = g.fg},
+		PreProc     {fg = g.fg}, -- #includes, macros
+		Conditional {fg = g.fg},      -- if/else, etc.
+		Function    {fg = c.blue},
+		Identifier  {fg = g.fg},
 
 		-- Operators and misc
-		Operator    { fg = grays.fg},              -- neutral, avoids rainbow
-		Special     { fg = grays.fg},     -- escape chars, regex, unusual
+		Operator    {fg = g.fg},              -- neutral, avoids rainbow
+		Special     {fg = g.fg},     -- escape chars, regex, unusual
 
 		-- UI
-		Directory   { fg = colors.blue },
-		Error       { fg = colors.red, gui = "bold" },
-		WarningMsg  { fg = colors.yellow, gui = "bold" },
-		Info        { fg = grays.fg},
+		Directory   {fg = g.fg},
+		Error       {fg = c.red, gui = "bold" },
+		WarningMsg  {fg = c.red, gui = "bold" },
+		Info        {fg = g.fg},
 
-		StatusLine  { fg = grays.fg, bg = colors.black },
-		StatusLineNC{ fg = grays.b_black, bg = grays.black },
+		StatusLine  { fg = g.fg, bg = c.black },
+		StatusLineNC{ fg = g.b_black, bg = g.black },
 
-		DiagnosticError { fg = colors.yellow},
-		DiagnosticWarn  { fg = colors.yellow},
-		DiagnosticInfo  { fg = colors.blue },
-		DiagnosticHint  { fg = colors.cyan },
+		DiagnosticError { fg = c.red},
+		DiagnosticWarn  { fg = c.red},
+		DiagnosticInfo  { fg = c.red},
+		DiagnosticHint  { fg = c.red},
 	}
 end)
 
@@ -239,10 +241,11 @@ require'marks'.setup {
 }
 
 lush(theme)
-vim.api.nvim_set_hl(0, "MarkSignHL", {fg = colors.red, bg = grays.bg})
-vim.api.nvim_set_hl(0, "StatusLine",   { fg = grays.fg, bg = grays.bg, bold = true })
-vim.api.nvim_set_hl(0, "StatusLineNC", { fg = grays.fg, bg = grays.bg })
-vim.api.nvim_set_hl(0, "VertSplit",    { fg = grays.black, bg = grays.bg })
+vim.api.nvim_set_hl(0, "TabLineSel", {fg = g.black, bg = c.blue})
+vim.api.nvim_set_hl(0, "MarkSignHL", {fg = c.red, bg = g.bg})
+vim.api.nvim_set_hl(0, "StatusLine",   { fg = g.black, bg = c.blue, bold = true })
+vim.api.nvim_set_hl(0, "StatusLineNC", { fg = g.fg, bg = g.bg })
+vim.api.nvim_set_hl(0, "VertSplit",    { fg = g.black, bg = c.blue})
 
 vim.api.nvim_create_autocmd("BufReadPost", {
     callback = function()
@@ -252,3 +255,4 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         end
     end,
 })
+
