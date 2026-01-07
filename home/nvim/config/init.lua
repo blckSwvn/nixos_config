@@ -24,10 +24,7 @@ map("n", "<leader>g", ":FzfLua grep<CR>")
 map("n", "<leader>f", ":FzfLua files<CR>")
 map("n", "<leader>m", ":FzfLua marks<CR>")
 map("n", "<leader>z", ":FzfLua <CR>")
-map("n", "<leader>-", ":Oil <CR>")
-map("n", "<leader>w", ":w<CR>")
-map("n", "<leader>q", ":q!<CR>")
-map("n", "<leader>x", ":x<CR>")
+map("n", "-", ":Oil <CR>")
 map("n", "<leader>h", "<C-W>h")
 map("n", "<leader>j", "<C-W>j")
 map("n", "<leader>k", "<C-W>k")
@@ -200,7 +197,7 @@ local theme = lush(function()
 		Visual      {bg = g.b_black},
 		Normal      {fg = g.fg, bg = g.bg },
 		Cursor      {fg = g.bg, bg = g.fg },
-		Comment     {bg = g.bb_black, fg = g.black, gui = "italic" },
+		Comment     {fg = c.red, gui = "italic" },
 
 		-- Language
 		String      {fg = c.green},
