@@ -9,9 +9,8 @@ systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESS
 systemctl --user start xdg-desktop-portal-wlr.service &
 systemctl --user start xdg-desktop-portal.service &
 
-swaybg -i $HOME/pictures/wallpapers/wallpaper5.* &
+swaybg -i $HOME/pictures/wallpapers/wallpaper0.* &
 
-sleep 1
 waybar &
 brightnessctl -d intel_backlight set 0 && brightnessctl -d tpacpi::kbd_backlight set 0 &
 
