@@ -14,3 +14,8 @@ set -x BROWSER librewolf
 set -gx NIXPKGS_ALLOW_UNFREE 1
 
 abbr -a v nvim
+
+function cd
+	builtin cd $argv && ls
+end
+

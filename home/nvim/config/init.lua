@@ -1,4 +1,5 @@
 -- OPTIONS
+vim.o.scrolloff = 999
 vim.o.termguicolors = true
 vim.o.ignorecase = true
 vim.o.number = true
@@ -20,8 +21,9 @@ vim.g.mapleader = " "
 
 -- KEYBINDINGS
 local map = vim.keymap.set
-map("n", "<leader>g", ":FzfLua grep<CR>")
 map("n", "<leader>f", ":FzfLua files<CR>")
+map("n", "<leader>g", ":FzfLua grep<CR>")
+map("n", "<leader>b", ":FzfLua buffers<CR>")
 map("n", "<leader>m", ":FzfLua marks<CR>")
 map("n", "<leader>z", ":FzfLua <CR>")
 map("n", "-", ":Oil <CR>")
@@ -36,16 +38,6 @@ map("n", "<leader>t", ":terminal<CR>")
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 map("t", "<C-Space>", [[<C-\><C-n>]])
-
-vim.api.nvim_create_autocmd("VimEnter",{
-callback = function ()
-	vim.cmd("r !fortune | cowsay ")
-	vim.bo.buftype = "nofile"
-	vim.bo.modifiable = false
-	vim.bo.readonly = true
-	vim.cmd("normal! ggzz")
-end
-})
 
 vim.pack.add({
 	{src = "https://github.com/nvim-treesitter/nvim-treesitter"},
@@ -102,7 +94,11 @@ require("nvim-treesitter.configs").setup({
 require("nvim-autopairs").setup()
 
 require("gitsigns").setup()
-require("snipe").setup()
+require("snipe").setup({
+	ui = {
+		position = "cursor",
+	}
+})
 map("n", "s", require("snipe").open_buffer_menu)
 
 -- LSP CONFIG
