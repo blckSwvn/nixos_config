@@ -72,10 +72,10 @@ riverctl map normal $alt Up spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+"
 riverctl map normal $alt Down spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-"
 
 #brightness ctl
-riverctl map normal $alt+Shift+Shift Up spawn "brightnessctl set 10%+"
+riverctl map normal $alt+Shift Up spawn "brightnessctl set 10%+"
 riverctl map normal $alt+Shift Down spawn "brightnessctl set 10%-"
-riverctl map normal $alt+up spawn "brightnessctl set 1+"
-riverctl map normal $alt+down spawn "brightnessctl set 1-"
+riverctl map normal $alt+$altgr+Shift Up spawn "brightnessctl -d tpacpi::kbd_backlight set 1+"
+riverctl map normal $alt+$altgr+Shift Down spawn "brightnessctl -d tpacpi::kbd_backlight set 1-"
 
 riverctl map normal $alt+Shift h focus-output left 
 riverctl map normal $alt+Shift l send-to-output right
