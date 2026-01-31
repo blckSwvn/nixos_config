@@ -38,6 +38,8 @@ map("n", "<leader>t", ":terminal<CR>")
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 map("t", "<C-Space>", [[<C-\><C-n>]])
+map("n", "<leader>d", ":lua vim.diagnostic.goto_next()<CR>")
+map("n", "<leader>D", ":lua vim.diagnostic.goto_prev()<CR>")
 
 vim.pack.add({
 	{src = "https://github.com/nvim-treesitter/nvim-treesitter"},
@@ -74,7 +76,7 @@ require("oil").setup({
 })
 
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "c", "lua", "nix", "css", "markdown", "markdown_inline" },
+  ensure_installed = { "c", "lua", "nix", "css", "markdown", "markdown_inline", "rust" },
   highlight = { enable = true },
   indent = { enable = true },
   textobjects = {
@@ -128,6 +130,7 @@ end
 
 -- Server configs
 local servers = {
+	rust_analyzer = {},
     clangd = {},
     lua_ls = { settings = { Lua = { diagnostics = { globals = { "vim" } } } } },
     nixd = {},

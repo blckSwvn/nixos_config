@@ -1,7 +1,9 @@
-{ config, pkgs, unstablePkgs, lib, ... } : {
+{ pkgs, unstablePkgs, ... } : {
 
   #packages
   environment.systemPackages = with pkgs; [
+    calcure
+    calcurse
     starship
     bash
     bat
@@ -38,6 +40,9 @@
     nixd
     vscode-langservers-extracted
     gcc
+    rust-analyzer
+    rustc
+    cargo
     qemu
     quickemu
   ] ++ (with unstablePkgs; [
