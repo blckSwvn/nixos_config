@@ -1,5 +1,4 @@
 -- OPTIONS
-vim.o.scrolloff = 999
 vim.o.termguicolors = true
 vim.o.ignorecase = true
 vim.o.number = true
@@ -26,6 +25,7 @@ map("n", "<leader>g", ":FzfLua grep<CR>")
 map("n", "<leader>b", ":FzfLua buffers<CR>")
 map("n", "<leader>m", ":FzfLua marks<CR>")
 map("n", "<leader>z", ":FzfLua <CR>")
+map("n", "<leader>r", ":FzfLua registers<CR>")
 map("n", "-", ":Oil <CR>")
 map("n", "<leader>h", "<C-W>h")
 map("n", "<leader>j", "<C-W>j")
@@ -154,18 +154,34 @@ cmp.setup({
     mapping = {
         ["<Tab>"] = cmp.mapping.confirm({ select = true }, {"i", "s"}),  -- only confirm
         ["<Esc>"] = cmp.mapping.abort(),                     -- abort
+	["<C-j>"] = cmp.mapping.select_next_item(),
+	["<C-k>"] = cmp.mapping.select_prev_item(),
     },
-    sources = {
-        { name = "nvim_lsp" },
-        { name = "buffer" },
-        { name = "path" },
-        { name = "luasnip" },  -- keep snippets as a source
-    },
-    window = {
-	    completion = cmp.config.window.bordered("rounded"),
-	    documentation = cmp.config.window.bordered("rounded"),
-    },
-    completion = { completeopt = "menu,menuone,select" },
+	sources = cmp.config.sources({
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+	}, {
+			{ name = "path" },
+			{ name = "buffer", keyword_length = 3 },
+		}),
+
+	sorting = {
+		priority_weight = 2,
+		comparators = {
+			cmp.config.compare.exact,
+			cmp.config.compare.recently_used,
+			cmp.config.compare.score,
+			cmp.config.compare.kind,
+			cmp.config.compare.offset,
+			cmp.config.compare.length,
+			cmp.config.compare.order,
+		},
+	},
+	window = {
+		completion = cmp.config.window.bordered("rounded"),
+		documentation = cmp.config.window.bordered("rounded"),
+	},
+	completion = { completeopt = "menu,menuone,select" },
 })
 
 -- LUSH THEME
@@ -193,7 +209,7 @@ local theme = lush(function()
 		lineNr	    {fg = c.yellow},
 		CursorLineNr{fg = c.blue, gui = "bold"},
 		CursorLine  {bg = g.black},
-		Visual      {bg = g.b_black},
+		Visual      {bg = c.blue, fg = g.fg},
 		Normal      {fg = g.fg, bg = g.bg },
 		Cursor      {fg = g.bg, bg = g.fg },
 		Comment     {fg = c.red, gui = "italic" },

@@ -12,7 +12,7 @@ systemctl --user start xdg-desktop-portal.service &
 swaybg -i $HOME/pictures/wallpapers/wallpaper0.* &
 
 waybar &
-brightnessctl -d intel_backlight set 0 && brightnessctl -d tpacpi::kbd_backlight set 0 &
+brightnessctl -d intel_backlight set 0 && brightnessctl -d tpacpi::kbd_backlight set 2 &
 
 #startup
 riverctl xcursor-theme Bibata-Modern-Ice
@@ -70,6 +70,7 @@ riverctl map normal $alt+Shift Right spawn "playerctl next"
 riverctl map normal $alt+Shift Left spawn "playerctl previous"
 riverctl map normal $alt Up spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+"
 riverctl map normal $alt Down spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-"
+riverctl map normal $alt m spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle" 
 
 #brightness ctl
 riverctl map normal $alt+Shift Up spawn "brightnessctl set 10%+"

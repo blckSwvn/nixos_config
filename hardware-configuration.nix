@@ -10,6 +10,7 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
+  boot.initrd.systemd.enable = true;
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
@@ -38,6 +39,7 @@
 
   boot.initrd.luks.devices.cryptroot = {
     device = "/dev/disk/by-label/cryptroot";
+    crypttabExtraOpts = [ "tpm2-device=auto" ];
   };
 
 # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
