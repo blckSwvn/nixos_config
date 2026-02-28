@@ -12,6 +12,8 @@ vim.o.swapfile = false
 vim.o.backup = false
 vim.o.writebackup = false
 vim.opt.clipboard = "unnamedplus"
+vim.opt.foldmethod="manual"
+vim.opt.foldlevel=99
 
 vim.cmd('filetype plugin indent on')
 
@@ -27,6 +29,8 @@ map("n", "<leader>m", ":FzfLua marks<CR>")
 map("n", "<leader>z", ":FzfLua <CR>")
 map("n", "<leader>r", ":FzfLua registers<CR>")
 map("n", "-", ":Oil <CR>")
+map("n", "<Tab>", ":tabnext<CR>")
+map("n", "<S-Tab>", ":tabprevious<CR>")
 map("n", "<leader>h", "<C-W>h")
 map("n", "<leader>j", "<C-W>j")
 map("n", "<leader>k", "<C-W>k")
@@ -59,6 +63,7 @@ vim.pack.add({
 	{src = "https://github.com/chentoast/marks.nvim"},
 	{src = "https://github.com/norcalli/nvim-colorizer.lua"},
 })
+
 
 require("oil").setup({
 	columns = {
@@ -254,7 +259,7 @@ require'marks'.setup {
 
 lush(theme)
 vim.api.nvim_set_hl(0, "TabLineSel", {fg = g.black, bg = c.blue})
-vim.api.nvim_set_hl(0, "MarkSignHL", {fg = c.red, bg = g.bg})
+vim.api.nvim_set_hl(0, "MarkSignHL", {fg = c.blue, bg = g.bg})
 vim.api.nvim_set_hl(0, "StatusLine",   { fg = g.black, bg = c.blue, bold = true })
 vim.api.nvim_set_hl(0, "StatusLineNC", { fg = g.fg, bg = g.bg })
 vim.api.nvim_set_hl(0, "VertSplit",    { fg = g.black, bg = c.blue})
@@ -268,3 +273,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
+vim.api.nvim_create_autocmd("UIEnter", {
+  once = true,
+  callback = function()
+    vim.defer_fn(function()
+      if vim.fn.argc() == 0 then
+        local session = vim.fn.getcwd() .. "/Session.vim"
+        if vim.fn.filereadable(session) == 1 then
+          vim.cmd("silent! source " .. session)
+        end
+      end
+    end, 50) -- delay in ms
+  end,
+})

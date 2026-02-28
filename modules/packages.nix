@@ -45,6 +45,8 @@
     cargo
     qemu
     quickemu
+    direnv
+    nix-direnv
   ] ++ (with unstablePkgs; [
     ]);
 

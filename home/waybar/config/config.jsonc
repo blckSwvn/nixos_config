@@ -3,7 +3,7 @@
 	"position": "bottom",
 	"reload_style_on_change": true,
 	"modules-left": ["clock", "pulseaudio"],
-	"modules-center": ["river/tags"],
+  "modules-center": ["river/tags"],
 	"modules-right": ["bluetooth","network","battery"],
 
 
