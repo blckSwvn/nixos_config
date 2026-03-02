@@ -2,8 +2,6 @@
 
   #packages
   environment.systemPackages = with pkgs; [
-    calcure
-    calcurse
     starship
     bash
     bat

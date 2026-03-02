@@ -34,28 +34,31 @@
     description = "null";
     shell = pkgs.fish;
     extraGroups = [
+      "wheel"
       "kvm"
-        "input"
+      "input"
     ];
   };
-#openBSD replacment for sudo its safer less LOC 
-  security.doas = {
+# #openBSD replacment for sudo its safer less LOC 
+#   security.doas = {
+#     enable = true;
+#     extraRules = [{
+#       users = ["blckSwan"];
+#       keepEnv = true;
+#       persist = false;
+#     }];
+#   };
+
+  security.sudo-rs = {
     enable = true;
-    extraRules = [{
-      users = ["blckSwan"];
-      keepEnv = true;
-      persist = false;
-    }];
   };
 
-#disable sudo since doas
+#disable sudo since sudo-rs
   security.sudo.enable = false;
 
   users.users.root = {
     shell = pkgs.fish;
   };
-
-  boot.kernelParams = [ "mem_sleep_default=deep" ];
 
 #for laptops laptop 
   services.logind.settings.Login = {
@@ -63,9 +66,7 @@
     HandleLidSwitchDocked="ignore";
     IdleAction="suspend";
     IdleActionSec="20min";
-    HandlePowerKey="suspend";
   };
-
 
   programs.man.enable = true;
 

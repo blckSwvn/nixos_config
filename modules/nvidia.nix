@@ -22,7 +22,4 @@
     };
   };
 
-  # programs.steam.package = lib.mkForce pkgs.steam.override {
-  #   withPrimus = true;
-  # };
-                            }
+}

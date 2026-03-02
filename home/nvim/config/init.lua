@@ -61,8 +61,10 @@ vim.pack.add({
 	{src = "https://github.com/rktjmp/lush.nvim"},
 	{src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"},
 	{src = "https://github.com/chentoast/marks.nvim"},
-	{src = "https://github.com/norcalli/nvim-colorizer.lua"},
+	{src = "https://github.com/stevearc/aerial.nvim"},
 })
+
+require("aerial").setup({})
 
 
 require("oil").setup({
