@@ -7,7 +7,6 @@
       ./modules/hardware.nix
       ./modules/networking.nix
       ./modules/packages.nix
-      ./modules/zsh.nix
   ];
 
 #nix settings

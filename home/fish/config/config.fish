@@ -19,7 +19,7 @@ function cd
 	builtin cd $argv && ls
 end
 
-function cd
+function rebuild
   sudo nixos-rebuild switch --flake path:/home/blckSwan/nixos_config#Cyclops
 end
 

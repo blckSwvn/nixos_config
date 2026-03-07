@@ -12,8 +12,12 @@ vim.o.swapfile = false
 vim.o.backup = false
 vim.o.writebackup = false
 vim.opt.clipboard = "unnamedplus"
-vim.opt.foldmethod="manual"
-vim.opt.foldlevel=99
+vim.opt.foldmethod = "manual"
+vim.o.foldcolumn = '1'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
 
 vim.cmd('filetype plugin indent on')
 
@@ -55,16 +59,12 @@ vim.pack.add({
 	{src = "https://github.com/hrsh7th/cmp-nvim-lsp"},
 	{src = "https://github.com/L3MON4D3/LuaSnip"},
 	{src = "https://github.com/neovim/nvim-lspconfig"},
-	{src = "https://github.com/tpope/vim-fugitive"},
 	{src = "https://github.com/lewis6991/gitsigns.nvim"},
 	{src = "https://github.com/leath-dub/snipe.nvim"},
 	{src = "https://github.com/rktjmp/lush.nvim"},
 	{src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"},
 	{src = "https://github.com/chentoast/marks.nvim"},
-	{src = "https://github.com/stevearc/aerial.nvim"},
 })
-
-require("aerial").setup({})
 
 
 require("oil").setup({
@@ -265,10 +265,13 @@ vim.api.nvim_set_hl(0, "MarkSignHL", {fg = c.blue, bg = g.bg})
 vim.api.nvim_set_hl(0, "StatusLine",   { fg = g.black, bg = c.blue, bold = true })
 vim.api.nvim_set_hl(0, "StatusLineNC", { fg = g.fg, bg = g.bg })
 vim.api.nvim_set_hl(0, "VertSplit",    { fg = g.black, bg = c.blue})
+vim.api.nvim_set_hl(0, "foldcolumn", {fg = g.fg})
+vim.api.nvim_set_hl(0, "folded", {fg = g.fg})
+
+vim.o.fillchars = [[fold: ,foldopen:#,foldsep:-,diff: ,msgsep: ,vert:|]]
 
 vim.api.nvim_create_autocmd("BufReadPost", {
     callback = function()
-        -- Only start an LSP if one isn't already attached
         if not next(vim.lsp.get_active_clients({ bufnr = 0 })) then
             vim.cmd("LspStart")
         end
