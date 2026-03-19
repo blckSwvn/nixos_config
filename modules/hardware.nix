@@ -8,9 +8,48 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true; #enable for qemu/quickemu
+    wireplumber.extraConfig = {
+      "60-audio-priority" = {
+        "monitor.bluez.rules" = [
+          {
+            matches = [
+              { "node.name" = "bluez_output.80_C3_BA_0A_65_99.1"; }
+            ];
+            actions = {
+              update-props = {
+                "priority.session" = 3000;
+              };
+            };
+          }
+        ];
+
+        "monitor.alsa.rules" = [
+          {
+            matches = [
+              { "node.name" = "alsa_output.pci-0000_c6_00.1.HiFi__HDMI2__sink"; }
+            ];
+            actions = {
+              update-props = {
+                "priority.session" = 2000;
+              };
+            };
+          }
+          {
+            matches = [
+              { "node.name" = "alsa_output.pci-0000_c6_00.6.HiFi__Speaker__sink"; }
+            ];
+            actions = {
+              update-props = {
+                "priority.session" = 1000;
+              };
+            };
+          }
+        ];
+      };
+    };
   };
 
-#bloat
+  #bloat
   services = {
     printing.enable = false;
     nscd.enable = false;

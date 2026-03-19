@@ -11,12 +11,15 @@ vim.o.smartindent = true
 vim.o.swapfile = false
 vim.o.backup = false
 vim.o.writebackup = false
-vim.opt.clipboard = "unnamedplus"
-vim.opt.foldmethod = "manual"
+vim.opt.clipboard ="unnamedplus"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldcolumn = '1'
+vim.o.signcolumn = "yes:2"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
+vim.o.undofile = true
 
 
 vim.cmd('filetype plugin indent on')
@@ -194,57 +197,52 @@ cmp.setup({
 -- LUSH THEME
 local lush = require("lush")
 
-local g = {
-	fg    = "#DADADA",
-	bb_black = "#b0b0b0",
-	bg    = "#000000",
-	black   = "#202020",
-	b_black = "#505050",
-}
-
 local c = {
-	-- red = "#eF4F29",
-	green     = "#2db64A",
-	yellow    = "#f0bf00",
-	blue      = "#4472CA",
-	cyan      = "#3FC8B3",
-	red       = "#DA2C38",
+	fg       = "#DADADA",
+	bg       = "#000000",
+	black    = "#202020",
+	b_black  = "#505050",
+	green    = "#2db64A",
+	yellow   = "#f0bf00",
+	blue     = "#4472CA",
+	cyan     = "#3FC8B3",
+	red      = "#DA2C38",
 }
 
 local theme = lush(function()
 	return {
-		lineNr	    {fg = c.yellow},
+		lineNr	    {fg = c.fg},
 		CursorLineNr{fg = c.blue, gui = "bold"},
-		CursorLine  {bg = g.black},
-		Visual      {bg = c.blue, fg = g.fg},
-		Normal      {fg = g.fg, bg = g.bg },
-		Cursor      {fg = g.bg, bg = g.fg },
-		Comment     {fg = c.red, gui = "italic" },
+		CursorLine  {bg = c.black},
+		Visual      {bg = c.blue, fg = c.fg},
+		Normal      {fg = c.fg,   bg = c.bg },
+		Cursor      {fg = c.bg,   bg = c.fg },
+		Comment     {fg = c.red,  gui = "italic" },
 
 		-- Language
 		String      {fg = c.green},
-		Boolean     {fg = g.fg},
+		Boolean     {fg = c.fg},
 		Constant    {fg = c.green},
-		Number      {fg = g.fg},     -- cooler than yellow
+		Number      {fg = c.fg},     -- cooler than yellow
 		Type        {fg = c.yellow},
-		Keyword     {fg = g.fg},
-		PreProc     {fg = g.fg}, -- #includes, macros
-		Conditional {fg = g.fg},      -- if/else, etc.
+		Keyword     {fg = c.fg},
+		PreProc     {fg = c.fg}, -- #includes, macros
+		Conditional {fg = c.fg},      -- if/else, etc.
 		Function    {fg = c.blue},
-		Identifier  {fg = g.fg},
+		Identifier  {fg = c.fg},
 
 		-- Operators and misc
-		Operator    {fg = g.fg},              -- neutral, avoids rainbow
-		Special     {fg = g.fg},     -- escape chars, regex, unusual
+		Operator    {fg = c.fg},              -- neutral, avoids rainbow
+		Special     {fg = c.fg},     -- escape chars, regex, unusual
 
 		-- UI
-		Directory   {fg = g.fg},
+		Directory   {fg = c.fg},
 		Error       {fg = c.red, gui = "bold" },
 		WarningMsg  {fg = c.red, gui = "bold" },
-		Info        {fg = g.fg},
+		Info        {fg = c.fg},
 
-		StatusLine  { fg = g.fg, bg = c.black },
-		StatusLineNC{ fg = g.b_black, bg = g.black },
+		StatusLine  { fg = c.fg,      bg = c.black },
+		StatusLineNC{ fg = c.b_black, bg = c.black },
 
 		DiagnosticError { fg = c.red},
 		DiagnosticWarn  { fg = c.red},
@@ -260,15 +258,15 @@ require'marks'.setup {
 }
 
 lush(theme)
-vim.api.nvim_set_hl(0, "TabLineSel", {fg = g.black, bg = c.blue})
-vim.api.nvim_set_hl(0, "MarkSignHL", {fg = c.blue, bg = g.bg})
-vim.api.nvim_set_hl(0, "StatusLine",   { fg = g.black, bg = c.blue, bold = true })
-vim.api.nvim_set_hl(0, "StatusLineNC", { fg = g.fg, bg = g.bg })
-vim.api.nvim_set_hl(0, "VertSplit",    { fg = g.black, bg = c.blue})
-vim.api.nvim_set_hl(0, "foldcolumn", {fg = g.fg})
-vim.api.nvim_set_hl(0, "folded", {fg = g.fg})
+vim.api.nvim_set_hl(0, "TabLineSel",   {fg = c.black, bg = c.blue})
+vim.api.nvim_set_hl(0, "MarkSignHL",   {fg = c.blue,  bg = c.bg})
+vim.api.nvim_set_hl(0, "StatusLine",   {fg = c.black, bg = c.blue, bold = true })
+vim.api.nvim_set_hl(0, "StatusLineNC", {fg = c.fg,    bg = c.bg })
+vim.api.nvim_set_hl(0, "VertSplit",    {fg = c.black, bg = c.blue})
+vim.api.nvim_set_hl(0, "Foldcolumn",   {fg = c.yellow})
+vim.api.nvim_set_hl(0, "Folded",       {fg = c.fg})
 
-vim.o.fillchars = [[fold: ,foldopen:#,foldsep:-,diff: ,msgsep: ,vert:|]]
+vim.o.fillchars = [[fold: ,foldopen:>,foldsep:^,diff: ,msgsep: ,vert: ]]
 
 vim.api.nvim_create_autocmd("BufReadPost", {
     callback = function()
