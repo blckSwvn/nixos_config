@@ -45,7 +45,9 @@
     quickemu
     direnv
     nix-direnv
+    niri
   ] ++ (with unstablePkgs; [
+      hyprland
     ]);
 
   fonts.packages = with pkgs; [
