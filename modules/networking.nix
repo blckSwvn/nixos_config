@@ -1,24 +1,23 @@
-{ config, pkgs, ... } : {
+{ ... } : {
 
-#networking
+  #networking
   networking = {
     hostName = "Cyclops"; # Define your hostname.
-      networkmanager.enable = false;
+    networkmanager.enable = false;
     useNetworkd = true;
     firewall = {
       enable = true;
-      allowedTCPPorts = [
-        80    #HTTP
-          443   #HTTPS
-          22    #SSH
-      ];
+      allowedTCPPorts = [ 22 ];
+      allowedUDPPorts = [ 53 ];
     };
   };
 
+  services.mullvad-vpn.enable = true;
   networking.wireless.iwd.enable = true;
   services.dbus.enable = true;
 
-#Fail2ban
+
+  #Fail2ban
   services.fail2ban = {
     enable = true;
     maxretry = 5;
@@ -27,13 +26,13 @@
     bantime = "24h";
     bantime-increment = {
       enable = true; # Enable increment of bantime after each violation
-        formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
+      formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
       maxtime = "168h";
       overalljails = true; # Calculate the bantime based on all the violations
     };
   };
 
-#SSH
+  #SSH
   services.openssh = {
     enable = true;
     passwordAuthentication = false;
@@ -41,4 +40,4 @@
     permitRootLogin = "no";
   };
 
-                        }
+}

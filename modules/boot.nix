@@ -18,7 +18,7 @@
 # "exfat"
     ];
 
-    kernelPackages = pkgs.linuxPackages_6_18;
+    kernelPackages = pkgs.linuxPackages_7_0;
 
     kernelModules = [
       "kvm"
@@ -27,7 +27,6 @@
     ];
     kernelParams = [
       "amd_iommu=on"
-        "block.mq=on"
         "nowatchdog"
         "loglevel=3" #only errors and beyond are logged change how needed 4:warning 5:notice 6:info 7:debug
         "amd_pstate=active" #better for newer CPUs

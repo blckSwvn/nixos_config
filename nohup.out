@@ -1,0 +1,32 @@
+[2m[2026-05-23 15:49:01.104][0m [32m INFO[0m [2mmullvad_daemon::version[0m[2m:[0m Starting mullvad-daemon - 2026.1 
+[2m[2026-05-23 15:49:01.104][0m [32m INFO[0m [2mmullvad_daemon[0m[2m:[0m Logging to /var/log/mullvad-vpn/daemon.log
+[2m[2026-05-23 15:49:01.104][0m [32m INFO[0m [2mmullvad_daemon::management_interface[0m[2m:[0m Management interface listening on /var/run/mullvad-vpn
+[2m[2026-05-23 15:49:01.104][0m [32m INFO[0m [2mmullvad_daemon::settings[0m[2m:[0m Loading settings from /etc/mullvad-vpn/settings.json
+[2m[2026-05-23 15:49:01.104][0m [31mERROR[0m [2mmullvad_daemon::relay_list::parsed_relays[0m[2m:[0m Failed to load bundled relays: Failed to open relay cache file
+[2m[2026-05-23 15:49:01.104][0m [31mERROR[0m [2mmullvad_daemon::relay_list::parsed_relays[0m[2m:[0m Failed to load cached relays: Failed to open relay cache file
+[2m[2026-05-23 15:49:01.104][0m [31mERROR[0m [2mmullvad_daemon[0m[2m:[0m Failed to open relay cache file
+[2m[2026-05-23 15:49:01.105][0m [32m INFO[0m [2mmullvad_daemon::account_history[0m[2m:[0m Opening account history file in /etc/mullvad-vpn/account-history.json
+[2m[2026-05-23 15:49:01.106][0m [33m WARN[0m [2mnetlink_packet_route::link::buffer_tool[0m[2m:[0m Specified IFLA_INET6_CONF NLA attribute holds more(most likely new kernel) data which is unknown to netlink-packet-route crate, expecting 236, got 240
+[2m[2026-05-23 15:49:01.106][0m [33m WARN[0m [2mnetlink_packet_route::link::buffer_tool[0m[2m:[0m Specified IFLA_INET6_CONF NLA attribute holds more(most likely new kernel) data which is unknown to netlink-packet-route crate, expecting 236, got 240
+[2m[2026-05-23 15:49:01.107][0m [32m INFO[0m [2mtalpid_core::firewall[0m[2m:[0m Resetting firewall policy
+[2m[2026-05-23 15:49:01.119][0m [32m INFO[0m [2mmullvad_daemon::api[0m[2m:[0m Initial offline state - online
+[2m[2026-05-23 15:49:04.203][0m [31mERROR[0m [2mmullvad_api::rest[0m[2m:[0m Unexpected HTTP status code 400 Bad Request, expected codes [200 OK]
+[2m[2026-05-23 15:49:04.203][0m [31mERROR[0m [2mmullvad_daemon[0m[2m:[0m Error: Login failed
+Caused by: Invalid account
+[2m[2026-05-23 15:49:05.051][0m [31mERROR[0m [2mmullvad_api::rest[0m[2m:[0m Unexpected HTTP status code 400 Bad Request, expected codes [200 OK]
+[2m[2026-05-23 15:49:05.051][0m [31mERROR[0m [2mmullvad_daemon[0m[2m:[0m Error: Login failed
+Caused by: Invalid account
+[2m[2026-05-23 15:49:05.410][0m [31mERROR[0m [2mmullvad_api::rest[0m[2m:[0m Unexpected HTTP status code 400 Bad Request, expected codes [200 OK]
+[2m[2026-05-23 15:49:05.410][0m [31mERROR[0m [2mmullvad_daemon[0m[2m:[0m Error: Login failed
+Caused by: Invalid account
+[2m[2026-05-23 15:49:05.585][0m [31mERROR[0m [2mmullvad_api::rest[0m[2m:[0m Unexpected HTTP status code 400 Bad Request, expected codes [200 OK]
+[2m[2026-05-23 15:49:05.585][0m [31mERROR[0m [2mmullvad_daemon[0m[2m:[0m Error: Login failed
+Caused by: Invalid account
+[2m[2026-05-23 15:49:05.704][0m [31mERROR[0m [2mmullvad_api::rest[0m[2m:[0m Unexpected HTTP status code 429 Too Many Requests, expected codes [200 OK]
+[2m[2026-05-23 15:49:05.704][0m [31mERROR[0m [2mmullvad_daemon[0m[2m:[0m Error: Login failed
+Caused by: Unexpected HTTP request error
+Caused by: Unexpected response status code 429 Too Many Requests - THROTTLED
+[2m[2026-05-23 15:49:05.722][0m [31mERROR[0m [2mmullvad_api::rest[0m[2m:[0m Unexpected HTTP status code 429 Too Many Requests, expected codes [200 OK]
+[2m[2026-05-23 15:49:08.400][0m [32m INFO[0m [2mtalpid_dns[0m[2m:[0m Resetting DNS
+[2m[2026-05-23 15:49:08.401][0m [32m INFO[0m [2mtalpid_core::tunnel_state_machine[0m[2m:[0m Tunnel state machine shut down
+[2m[2026-05-23 15:49:08.403][0m [32m INFO[0m [2mmullvad_daemon[0m[2m:[0m Mullvad daemon is quitting

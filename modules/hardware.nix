@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... } : {
-#sound
+  #sound
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = false;
   services.pipewire = {
@@ -64,7 +64,7 @@
 
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = false;
+    powerOnBoot = true;
   };
 
 
@@ -73,7 +73,7 @@
     enable32Bit = true;
   };
 
-#cpu optimization
+  #cpu optimization
   services.tlp = {
     enable = true;
     settings = {
@@ -91,5 +91,4 @@
       USB_BLACKLIST_BTUSB = 0;
     };
   };
-
-                             }
+}

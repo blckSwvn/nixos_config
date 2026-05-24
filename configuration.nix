@@ -1,33 +1,46 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
-      # ./modules/noveau.nix
-      ./modules/nvidia.nix
-      ./modules/boot.nix
-      ./modules/hardware.nix
-      ./modules/networking.nix
-      ./modules/packages.nix
+    # ./modules/noveau.nix
+    ./modules/nvidia.nix
+    ./modules/boot.nix
+    ./modules/hardware.nix
+    ./modules/networking.nix
+    ./modules/packages.nix
   ];
 
-#nix settings
+  #nix settings
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
   };
 
-# Set your time zone.
+  # Set your time zone.
   time.timeZone = "Europe/Oslo";
 
-# Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  # Select internationalisation properties.
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    inputMethod = {
+      enable = true;
+      type = "fcitx5";
+      fcitx5 = {
+        addons = with pkgs; [
+          fcitx5-mozc
+          fcitx5-gtk
+          qt6Packages.fcitx5-configtool
+        ];
+        waylandFrontend = true;
+      };
+    };
+  };
 
-
-# Configure console keymap
+  # Configure console keymap
   console.keyMap = "no";
 
-#user
+  #user
   programs.fish.enable = true;
-   
+
   users.users.blckSwan = {
     isNormalUser = true;
     description = "null";
@@ -38,28 +51,17 @@
       "input"
     ];
   };
-# #openBSD replacment for sudo its safer less LOC 
-#   security.doas = {
-#     enable = true;
-#     extraRules = [{
-#       users = ["blckSwan"];
-#       keepEnv = true;
-#       persist = false;
-#     }];
-#   };
+
+  security.sudo.enable = false;
 
   security.sudo-rs = {
     enable = true;
   };
 
-#disable sudo since sudo-rs
-  security.sudo.enable = false;
-
   users.users.root = {
     shell = pkgs.fish;
   };
 
-#for laptops laptop 
   services.logind.settings.Login = {
     handleLidSwitch="suspend";
     HandleLidSwitchDocked="ignore";
@@ -81,5 +83,5 @@
     '';
   };
 
-  system.stateVersion = "25.05";
-                       }
+  system.stateVersion = "25.11";
+}

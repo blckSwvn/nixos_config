@@ -4,13 +4,19 @@ pkill waybar
 export XDG_CURRENT_DESKTOP=river
 export XDG_SESSION_TYPE=wayland
 export XDG_SESSION_DESKTOP=river
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export INPUT_METHOD=fcitx
+export SDL_IM_MODULE=fcitx
 
 systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
 systemctl --user start xdg-desktop-portal-wlr.service &
 systemctl --user start xdg-desktop-portal.service &
 
-swaybg -i $HOME/pictures/wallpapers/wallpaper0.* &
+swaybg -i $HOME/pictures/wallpapers/wallpaper4.* &
 
+fcitx5 &
 waybar &
 brightnessctl -d intel_backlight set 0 && brightnessctl -d tpacpi::kbd_backlight set 2 &
 
@@ -24,8 +30,8 @@ riverctl send-layout-cmd rivercarro "main-ratio 0.5"
 riverctl send-layout-cmd rivercarro "width-ratio 1"
 riverctl send-layout-cmd rivercarro "no-smart-gaps"
 riverctl send-layout-cmd rivercarro "no-smart-gaps"
-riverctl send-layout-cmd rivercarro "inner-gaps 0"
-riverctl send-layout-cmd rivercarro "outer-gaps 0"
+riverctl send-layout-cmd rivercarro "inner-gaps 8"
+riverctl send-layout-cmd rivercarro "outer-gaps 5"
 riverctl send-layout-cmd rivercarro "main-location left"
 }
 riverctl focus-follows-cursor always
@@ -44,25 +50,27 @@ altgr="Mod5"
 super="Super"
 
 #rules
-riverctl rule-add -app-id kitty tags 1
+riverctl rule-add -app-id foot tags 1
 riverctl rule-add -app-id librewolf tags 2
+riverctl rule-add -app-id steam tags 4
 riverctl rule-add -app-id librewolf fullscreen
 
 #map aka binds
 #common lanching apps etc
+riverctl map normal Mod5 Space spawn "waypaper"
 riverctl map normal $alt s spawn "systemctl suspend"
 riverctl map normal $alt+Shift s spawn "waylock"
-riverctl map normal $alt r spawn "$HOME/.config/river/wallpaper.sh"
-riverctl map normal $altgr Space spawn kitty
-riverctl map normal $altgr b spawn librewolf
-riverctl map normal $altgr f toggle-fullscreen
-riverctl map normal $alt Q close
+riverctl map normal $alt t spawn foot
+riverctl map normal $alt b spawn librewolf
+riverctl map normal $alt f toggle-fullscreen
+riverctl map normal $alt q close
 riverctl map normal $altgr g spawn 'grim -g "$(slurp)" ~/pictures/$(date +%M:%H_%d-%m-%Y).png | wl-copy'
 
 riverctl map normal $alt Space spawn "wofi --show drun"
 riverctl map normal $alt+Shift E exit
-riverctl map normal $alt f toggle-float
-riverctl map normal $super+Shift s spawn "DRI_PRIME=0 steam"
+riverctl map normal $altgr f toggle-float
+riverctl map normal $super+Shift s spawn "mullvad-exclude DRI_PRIME=0 steam"
+riverctl map normal $super+Shift m spawn "mullvad-exclude prismlauncher"
 
 #playerctl wpctl
 riverctl map normal $alt p spawn "playerctl play-pause"
@@ -82,29 +90,29 @@ riverctl map normal $alt+Shift h focus-output left
 riverctl map normal $alt+Shift l send-to-output right
 
 #navigation
-riverctl map normal $alt h focus-view left
-riverctl map normal $alt l focus-view right
-riverctl map normal $alt j focus-view down
-riverctl map normal $alt k focus-view up
+riverctl map normal $super h focus-view left
+riverctl map normal $super l focus-view right
+riverctl map normal $super j focus-view down
+riverctl map normal $super k focus-view up
 
 #snap FLOATING windows
 riverctl map normal $altgr h snap left
 riverctl map normal $altgr l snap right
 riverctl map normal $altgr j snap down
 riverctl map normal $altgr k snap up
-riverctl map normal $super h focus-output left
-riverctl map normal $super j focus-output down
-riverctl map normal $super k focus-output upup
-riverctl map normal $super l focus-output right
+riverctl map normal $super+shift h focus-output left
+riverctl map normal $super+shift j focus-output down
+riverctl map normal $super+shift k focus-output upup
+riverctl map normal $super+shift l focus-output right
 riverctl map normal $super+$mod h send-to-output left
 riverctl map normal $super+$mod j send-to-output down
 riverctl map normal $super+$mod k send-to-output upup
 riverctl map normal $super+$mod l send-to-output right
-riverctl map normal $super+Shift k send-layout-cmd rivercarro "main-count +1";
-riverctl map normal $super+Shift j send-layout-cmd rivercarro "main-count -1"
-riverctl map normal $super+Shift c send-layout-cmd rivercarro "main-location-cycle left,top,right"
 riverctl map normal $super+Shift h send-layout-cmd rivercarro "main-ratio +0.1"
 riverctl map normal $super+Shift l send-layout-cmd rivercarro "main-ratio -0.1"
+# riverctl map normal $super+Shift j send-layout-cmd rivercarro "main-count -1"
+# riverctl map normal $super+Shift k send-layout-cmd rivercarro "main-count +1";
+# riverctl map normal $super+Shift c send-layout-cmd rivercarro "main-location-cycle left,top,right"
 #tags
 #switch what tag you see
 riverctl map normal $alt+Shift 1 toggle-focused-tags 1

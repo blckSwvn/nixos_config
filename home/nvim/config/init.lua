@@ -1,4 +1,5 @@
 -- OPTIONS
+vim.o.mouse = ""
 vim.o.termguicolors = true
 vim.o.ignorecase = true
 vim.o.number = true
@@ -12,8 +13,7 @@ vim.o.swapfile = false
 vim.o.backup = false
 vim.o.writebackup = false
 vim.opt.clipboard ="unnamedplus"
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldmethod = "manual"
 vim.o.foldcolumn = '1'
 vim.o.signcolumn = "yes:2"
 vim.o.foldlevel = 99
@@ -85,23 +85,16 @@ require("oil").setup({
 	watch_for_changes = true,
 })
 
-require("nvim-treesitter.configs").setup({
-  ensure_installed = { "c", "lua", "nix", "css", "markdown", "markdown_inline", "rust" },
-  highlight = { enable = true },
-  indent = { enable = true },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-      },
-    },
-  },
-})
+require('nvim-treesitter').install {"c", "lua", "nix", "css", "rust"}
+require("nvim-treesitter-textobjects").setup{
+	select = {
+		lookahead = true,
+		selection_modes = {
+			['@function.outer'] = 'af',
+			['@function.inner'] = 'if',
+		}
+	}
+}
 
 require("nvim-autopairs").setup()
 
@@ -114,8 +107,6 @@ require("snipe").setup({
 map("n", "s", require("snipe").open_buffer_menu)
 
 -- LSP CONFIG
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 vim.diagnostic.config({ float = { border = "rounded" } })
 
 -- Optional: load snippets from VSCode style

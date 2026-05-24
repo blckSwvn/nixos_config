@@ -2,8 +2,10 @@
 
   #packages
   environment.systemPackages = with pkgs; [
+    cmus
     starship
     bash
+    waypaper
     bat
     git
     btop
@@ -12,7 +14,6 @@
     gnumake
     fzf
     vlc
-    ffmpeg
     wineWowPackages.full
     powertop
     cowsay
@@ -22,9 +23,8 @@
     qbittorrent
     brightnessctl
     tldr
-    man-pages
-    man-pages-posix
-    liburing
+    # man-pages
+    # liburing
     xwayland
     waylock
     swaybg
@@ -36,29 +36,32 @@
     clang-tools
     lua-language-server
     nixd
+    nixfmt
     vscode-langservers-extracted
     gcc
     rust-analyzer
-    rustc
+    rustfmt
     cargo
     qemu
     quickemu
     direnv
     nix-direnv
-    niri
+    prismlauncher
+    fastfetch
+    foot
+    helix
+    kakoune
+    mullvad
+    mullvad-vpn
   ] ++ (with unstablePkgs; [
-      hyprland
+    i2p
     ]);
 
   fonts.packages = with pkgs; [
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
     jetbrains-mono
     nerd-fonts.meslo-lg
-
-    #for less uniqueness
-    # liberation_ttf #times new roman, arial, courier new
-    # dejavu_fonts        # Very common Linux fonts
-    # noto-fonts          # Covers many scripts, common
-    corefonts           # Windows core fonts like Segoe UI
   ];
 
   #fonts.packages = [ ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
@@ -80,14 +83,12 @@
     remotePlay.openFirewall = false;
     dedicatedServer.openFirewall = false;
     localNetworkGameTransfers.openFirewall = false;
+    gamescopeSession.enable = true;
   };
-
-  programs.steam.gamescopeSession.enable = true;
 
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
 
   #for dynamic linking
   programs.nix-ld.enable = true;
-
 }

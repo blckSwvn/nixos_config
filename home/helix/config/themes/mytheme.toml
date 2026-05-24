@@ -1,0 +1,59 @@
+"ui.background" = { bg = "bg" }
+"ui.text" = { fg = "fg" }
+
+"ui.cursor" = { fg = "bg", bg = "fg" }
+"ui.cursor.primary" = { fg = "bg", bg = "fg" }
+"ui.selection" = {bg = "b_black" }
+
+"ui.linenr" = { fg = "fg" }
+"ui.linenr.selected" = { fg = "blue", modifiers = ["bold"] }
+"ui.cursorline.primary" = { bg = "black" }
+"ui.statusline" = { fg = "black", bg = "blue", modifiers = ["bold"] }
+"ui.statusline.inactive" = { fg = "fg", bg = "bg" }
+"ui.bufferline.active" = { fg = "black", bg = "blue" }
+"ui.bufferline" = { fg = "fg", bg = "black" }
+"ui.popup" = { fg = "fg", bg = "bg" }
+"ui.menu" = { fg = "fg", bg = "bg" }
+"ui.menu.selected" = { fg = "fg", bg = "blue" }
+"ui.virtual" = { fg = "b_black" }
+"ui.window" = { fg = "black" }
+"error" = {bg = "red"}
+"warning" = {fg = "red"}
+"info" = {fg = "blue"}
+"hint" = {fg = "orange"}
+"diagnostic.error" = {bg = "red"}
+"diagnostic.warning" = { underline = {color = "red", style = "curl" } }
+"diagnostic.info" = {underline = {color = "blue", style = "curl"} }
+"diagnostic.hint" = {underline = {color = "orange", style = "curl"} }
+"diagnostic.unnecessary" = {underline = {colors = "orange", style = "curl"}}
+"comment" = { fg = "fg", bg = "b_black", modifiers = ["italic"] }
+"string" = { fg = "green" }
+"constant" = { fg = "green" }
+"constant.numeric" = { fg = "fg" }
+"constant.builtin.boolean" = { fg = "fg" }
+"type" = { fg = "yellow" }
+"type.builtin" = { fg = "yellow" }
+"function" = { fg = "blue" }
+"function.builtin" = { fg = "blue" }
+"keyword" = { fg = "fg" }
+"keyword.control" = { fg = "fg" }
+"keyword.directive" = { fg = "fg" }
+"variable" = { fg = "fg" }
+"variable.builtin" = { fg = "fg" }
+"variable.parameter" = { fg = "fg" }
+"operator" = { fg = "fg" }
+"punctuation" = { fg = "fg" }
+"special" = { fg = "fg" }
+"diff.plus" = { fg = "green" }
+"diff.minus" = { fg = "fg" }
+"diff.delta" = { fg = "blue" }
+[palette]
+fg       = "#DADADA"
+bg       = "#000000"
+black    = "#202020"
+b_black  = "#505050"
+green    = "#2db64A"
+yellow   = "#f0bf00"
+blue     = "#4472CA"
+orange   = "#EE8434"
+red      = "#DA2C38"

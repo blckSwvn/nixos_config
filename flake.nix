@@ -7,7 +7,7 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs = { self, nixpkgs, unstable, neovim-nightly-overlay, home-manager, ... }:
+  outputs = { nixpkgs, unstable, neovim-nightly-overlay, home-manager, ... }:
     let
     system = "x86_64-linux";
 
