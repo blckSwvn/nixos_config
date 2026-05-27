@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./hardware-configuration.nix
     # ./modules/noveau.nix
@@ -9,16 +10,16 @@
     ./modules/packages.nix
   ];
 
-  #nix settings
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     auto-optimise-store = true;
   };
 
-  # Set your time zone.
   time.timeZone = "Europe/Oslo";
 
-  # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
@@ -63,10 +64,10 @@
   };
 
   services.logind.settings.Login = {
-    handleLidSwitch="suspend";
-    HandleLidSwitchDocked="ignore";
-    IdleAction="suspend";
-    IdleActionSec="20min";
+    handleLidSwitch = "suspend";
+    HandleLidSwitchDocked = "ignore";
+    IdleAction = "suspend";
+    IdleActionSec = "20min";
   };
 
   programs.man.enable = true;
@@ -78,8 +79,8 @@
 
   security.pam.services.waylock = {
     text = ''
-    auth    include login
-    account include login
+      auth    include login
+      account include login
     '';
   };
 

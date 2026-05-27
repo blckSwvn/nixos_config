@@ -1,188 +1,120 @@
--- OPTIONS
-vim.o.mouse = ""
-vim.o.termguicolors = true
-vim.o.ignorecase = true
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.cursorline = true
-vim.o.shiftwidth = 8
-vim.o.tabstop = 8
-vim.o.expandtab = false
-vim.o.smartindent = true
-vim.o.swapfile = false
-vim.o.backup = false
-vim.o.writebackup = false
-vim.opt.clipboard ="unnamedplus"
-vim.opt.foldmethod = "manual"
-vim.o.foldcolumn = '1'
-vim.o.signcolumn = "yes:2"
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
-vim.o.undofile = true
-
-
-vim.cmd('filetype plugin indent on')
-
--- LEADER
+vim.opt.number = true
+vim.opt.cursorline = true
+vim.opt.relativenumber = true
+vim.opt.swapfile = false
+vim.opt.writebackup = false
+vim.opt.backup = false
+vim.opt.undofile = true
 vim.g.mapleader = " "
+vim.opt.termguicolors = true
 
--- KEYBINDINGS
-local map = vim.keymap.set
-map("n", "<leader>f", ":FzfLua files<CR>")
-map("n", "<leader>g", ":FzfLua grep<CR>")
-map("n", "<leader>b", ":FzfLua buffers<CR>")
-map("n", "<leader>m", ":FzfLua marks<CR>")
-map("n", "<leader>z", ":FzfLua <CR>")
-map("n", "<leader>r", ":FzfLua registers<CR>")
-map("n", "-", ":Oil <CR>")
-map("n", "<Tab>", ":tabnext<CR>")
-map("n", "<S-Tab>", ":tabprevious<CR>")
-map("n", "<leader>h", "<C-W>h")
-map("n", "<leader>j", "<C-W>j")
-map("n", "<leader>k", "<C-W>k")
-map("n", "<leader>l", "<C-W>l")
-map("n", "<leader>v", ":vsplit<CR>")
-map("n", "<leader>c", ":split<CR>")
-map("n", "<leader>n", ":tabnew<CR>")
-map("n", "<leader>t", ":terminal<CR>")
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
-map("t", "<C-Space>", [[<C-\><C-n>]])
-map("n", "<leader>d", ":lua vim.diagnostic.goto_next()<CR>")
-map("n", "<leader>D", ":lua vim.diagnostic.goto_prev()<CR>")
+local m = vim.keymap.set
+m("n", "<leader>y", '"+yy')
+m("v", "<leader>y", '"+y')
+m("n", "<leader>p", '"+p')
+m("n", "<leader>P", '"+P')
+m("n", "<C-d>", "<C-d>zz")
+m("n", "<C-u>", "<C-u>zz")
+m("n", "<leader>f", ":FzfLua files<CR>")
+m("n", "<leader>s", ":FzfLua lsp_workspace_symbols<CR>")
+m("n", "<leader>g", ":FzfLua grep<CR>")
+m("n", "<leader>b", ":FzfLua buffers<CR>")
+m("n", "<leader>z", ":FzfLua<CR>")
+m("n", "<leader>wv", "<C-w>v")
+m("n", "<leader>wh", "<C-w>s")
+m("n", "<leader>h",  "<C-w>h")
+m("n", "<leader>j",  "<C-w>j")
+m("n", "<leader>k",  "<C-w>k")
+m("n", "<leader>l",  "<C-w>l")
+m("n", "<leader>t", ":terminal<CR>")
+m("t", "<C-Space>", [[<C-\><C-n>]])
+m("n", "<C-h>", "<cmd>vertical resize -2<CR>")
+m("n", "<C-j>", "<cmd>resize +2<CR>")
+m("n", "<C-k>", "<cmd>resize -2<CR>")
+m("n", "<C-l>", "<cmd>vertical resize +2<CR>")
+m("n", "gd", vim.lsp.buf.definition)
+m("n", "gD", vim.lsp.buf.declaration)
+m("n", "gi", vim.lsp.buf.implementation)
+m("n", "gr", vim.lsp.buf.references)
+m("n", "<leader>r", vim.lsp.buf.rename)
+m("n", "<leader>e", function()
+  vim.diagnostic.open_float(nil, { border = "rounded" })
+end)
+
+local objects = {
+  p = "(",
+  c = "{",
+  b = "[",
+  q = '"',
+  s = "'",
+  t = "<",
+}
+
+for key, char in pairs(objects) do
+  vim.keymap.set({ "o", "x" }, "i" .. key, "i" .. char)
+  vim.keymap.set({ "o", "x" }, "a" .. key, "a" .. char)
+end
+
 
 vim.pack.add({
-	{src = "https://github.com/nvim-treesitter/nvim-treesitter"},
-	{src = "https://github.com/stevearc/oil.nvim"},
 	{src = "https://github.com/windwp/nvim-autopairs"},
 	{src = "https://github.com/ibhagwan/fzf-lua"},
-	{src = "https://github.com/nvim-tree/nvim-web-devicons"},
-	{src = "https://github.com/hrsh7th/nvim-cmp"},
-	{src = "https://github.com/hrsh7th/cmp-nvim-lsp"},
-	{src = "https://github.com/L3MON4D3/LuaSnip"},
 	{src = "https://github.com/neovim/nvim-lspconfig"},
-	{src = "https://github.com/lewis6991/gitsigns.nvim"},
-	{src = "https://github.com/leath-dub/snipe.nvim"},
+	{src = "https://github.com/hrsh7th/nvim-cmp" },
+	{src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
 	{src = "https://github.com/rktjmp/lush.nvim"},
-	{src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"},
-	{src = "https://github.com/chentoast/marks.nvim"},
+	{src = "https://github.com/hrsh7th/cmp-buffer" },
+	{src = "https://github.com/hrsh7th/cmp-path" },
+	{src = "https://github.com/lewis6991/gitsigns.nvim"},
 })
-
-
-require("oil").setup({
-	columns = {
-		"mtime",
-		"icon",
-	},
-	view_options = {
-		show_hidden = false,
-		sort = {
-			{ "mtime", "desc" },
-			{ "name", "asc" },
-		},
-	},
-	watch_for_changes = true,
-})
-
-require('nvim-treesitter').install {"c", "lua", "nix", "css", "rust"}
-require("nvim-treesitter-textobjects").setup{
-	select = {
-		lookahead = true,
-		selection_modes = {
-			['@function.outer'] = 'af',
-			['@function.inner'] = 'if',
-		}
-	}
-}
 
 require("nvim-autopairs").setup()
 
-require("gitsigns").setup()
-require("snipe").setup({
-	ui = {
-		position = "cursor",
-	}
-})
-map("n", "s", require("snipe").open_buffer_menu)
-
--- LSP CONFIG
-vim.diagnostic.config({ float = { border = "rounded" } })
-
--- Optional: load snippets from VSCode style
-require("luasnip.loaders.from_vscode").lazy_load()
-
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.preselectSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = { "documentation", "detail", "additionalTextEdits" }
-}
+vim.lsp.config("lua_ls", { capabilities = capabilities })
+vim.lsp.config("nixd", { capabilities = capabilities })
+vim.lsp.config("clangd", { capabilities = capabilities })
+vim.lsp.config("rust_analyzer", { capabilities = capabilities })
+vim.lsp.enable({
+  "lua_ls",
+  "nixd",
+  "clangd",
+  "rust_analyzer",
+})
 
+vim.diagnostic.config({
+  virtual_text = {
+    severity = vim.diagnostic.severity.WARNING,
+    spacing = 0,
+    prefix = "",
+  },
+  underline = true,
+  signs = true,
+  update_in_insert = false,
+})
 
-local on_attach = function(_, bufnr)
-    local opts = { buffer = bufnr }
-    map("n", "gd", vim.lsp.buf.definition, opts)
-    map("n", "K", vim.lsp.buf.hover, opts)
-    map("n", "gr", function() require("fzf-lua").lsp_references() end, opts)
-    map("n", "y", vim.lsp.buf.rename, opts)
-    map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-end
-
--- Server configs
-local servers = {
-	rust_analyzer = {},
-    clangd = {},
-    lua_ls = { settings = { Lua = { diagnostics = { globals = { "vim" } } } } },
-    nixd = {},
-    cssls = {}
-}
-
-for name, config in pairs(servers) do
-    config.capabilities = capabilities
-    config.on_attach = on_attach
-    vim.lsp.config[name] = config
-end
-
--- CMP CONFIG
-local cmp = require("cmp")
+local cmp = require"cmp"
 cmp.setup({
-    snippet = {
-        expand = function(args)
-            require("luasnip").lsp_expand(args.body)  -- enable snippet expansion for LSP
-        end,
-    },
-    mapping = {
-        ["<Tab>"] = cmp.mapping.confirm({ select = true }, {"i", "s"}),  -- only confirm
-        ["<Esc>"] = cmp.mapping.abort(),                     -- abort
-	["<C-j>"] = cmp.mapping.select_next_item(),
-	["<C-k>"] = cmp.mapping.select_prev_item(),
-    },
-	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-	}, {
-			{ name = "path" },
-			{ name = "buffer", keyword_length = 3 },
-		}),
-
-	sorting = {
-		priority_weight = 2,
-		comparators = {
-			cmp.config.compare.exact,
-			cmp.config.compare.recently_used,
-			cmp.config.compare.score,
-			cmp.config.compare.kind,
-			cmp.config.compare.offset,
-			cmp.config.compare.length,
-			cmp.config.compare.order,
-		},
+	snippet = {
+		expand = function(args)
+			vim.snippet.expand(args.body)
+		end,
 	},
 	window = {
-		completion = cmp.config.window.bordered("rounded"),
-		documentation = cmp.config.window.bordered("rounded"),
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
 	},
-	completion = { completeopt = "menu,menuone,select" },
+	mapping = cmp.mapping.preset.insert({
+		["<C-e>"] = cmp.mapping.abort(),
+		["<CR>"] = cmp.mapping.confirm({select = true}),
+		["<C-j>"] = cmp.mapping.select_next_item(),
+		["<C-k>"] = cmp.mapping.select_prev_item(),
+	}),
+	sources = cmp.config.sources({
+		{name = "nvim_lsp"},
+		{name = "path"},
+		{name = "buffer"},
+	}),
 })
 
 -- LUSH THEME
@@ -196,7 +128,7 @@ local c = {
 	green    = "#2db64A",
 	yellow   = "#f0bf00",
 	blue     = "#4472CA",
-	cyan     = "#3FC8B3",
+	orange   = "#3FC8B3",
 	red      = "#DA2C38",
 }
 
@@ -208,7 +140,7 @@ local theme = lush(function()
 		Visual      {bg = c.blue, fg = c.fg},
 		Normal      {fg = c.fg,   bg = c.bg },
 		Cursor      {fg = c.bg,   bg = c.fg },
-		Comment     {fg = c.red,  gui = "italic" },
+		Comment     {fg = c.fg, bg = c.black },
 
 		-- Language
 		String      {fg = c.green},
@@ -228,27 +160,21 @@ local theme = lush(function()
 
 		-- UI
 		Directory   {fg = c.fg},
-		Error       {fg = c.red, gui = "bold" },
-		WarningMsg  {fg = c.red, gui = "bold" },
-		Info        {fg = c.fg},
+		Error       {bg = c.red},
+		WarningMsg  {fg = c.red },
+		Info        {fg = c.orange},
 
 		StatusLine  { fg = c.fg,      bg = c.black },
 		StatusLineNC{ fg = c.b_black, bg = c.black },
 
-		DiagnosticError { fg = c.red},
+		DiagnosticError { bg = c.red},
 		DiagnosticWarn  { fg = c.red},
-		DiagnosticInfo  { fg = c.red},
-		DiagnosticHint  { fg = c.red},
+		DiagnosticInfo  { fg = c.blue},
+		DiagnosticHint  { fg = c.orange},
 	}
 end)
-
-require'marks'.setup {
-	default_mappings = true,
-	force_write_shada = true,
-	refresh_interval = 250,
-}
-
 lush(theme)
+
 vim.api.nvim_set_hl(0, "TabLineSel",   {fg = c.black, bg = c.blue})
 vim.api.nvim_set_hl(0, "MarkSignHL",   {fg = c.blue,  bg = c.bg})
 vim.api.nvim_set_hl(0, "StatusLine",   {fg = c.black, bg = c.blue, bold = true })
@@ -257,26 +183,12 @@ vim.api.nvim_set_hl(0, "VertSplit",    {fg = c.black, bg = c.blue})
 vim.api.nvim_set_hl(0, "Foldcolumn",   {fg = c.yellow})
 vim.api.nvim_set_hl(0, "Folded",       {fg = c.fg})
 
-vim.o.fillchars = [[fold: ,foldopen:>,foldsep:^,diff: ,msgsep: ,vert: ]]
-
-vim.api.nvim_create_autocmd("BufReadPost", {
-    callback = function()
-        if not next(vim.lsp.get_active_clients({ bufnr = 0 })) then
-            vim.cmd("LspStart")
-        end
-    end,
-})
-
-vim.api.nvim_create_autocmd("UIEnter", {
-  once = true,
-  callback = function()
-    vim.defer_fn(function()
-      if vim.fn.argc() == 0 then
-        local session = vim.fn.getcwd() .. "/Session.vim"
-        if vim.fn.filereadable(session) == 1 then
-          vim.cmd("silent! source " .. session)
-        end
-      end
-    end, 50) -- delay in ms
-  end,
-})
+vim.api.nvim_set_hl(0, "GitSignsAdd",  {fg = c.green})
+vim.api.nvim_set_hl(0, "GitSignsAddLn",  {fg = c.green})
+vim.api.nvim_set_hl(0, "GitSignsAddNr",  {fg = c.green})
+vim.api.nvim_set_hl(0, "GitSignsChange",  {fg = c.blue})
+vim.api.nvim_set_hl(0, "GitSignsChangeLn",  {fg = c.blue})
+vim.api.nvim_set_hl(0, "GitSignsChangeNr",  {fg = c.blue})
+vim.api.nvim_set_hl(0, "GitSignsRemove",  {fg = c.fg})
+vim.api.nvim_set_hl(0, "GitSignsRemoveLn",  {fg = c.fg})
+vim.api.nvim_set_hl(0, "GitSignsRemoveNr",  {fg = c.fg})

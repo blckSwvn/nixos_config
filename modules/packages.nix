@@ -23,8 +23,8 @@
     qbittorrent
     brightnessctl
     tldr
-    # man-pages
-    # liburing
+    man-pages
+    liburing
     xwayland
     waylock
     swaybg
@@ -49,8 +49,6 @@
     prismlauncher
     fastfetch
     foot
-    helix
-    kakoune
     mullvad
     mullvad-vpn
   ] ++ (with unstablePkgs; [

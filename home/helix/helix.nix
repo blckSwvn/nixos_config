@@ -6,6 +6,6 @@
 	};
 
 	home.packages = with pkgs; [
-		helix
+		evil-helix
 	];
 }

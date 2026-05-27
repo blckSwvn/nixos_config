@@ -138,16 +138,16 @@ riverctl map normal $altgr+Shift 9 set-view-tags 256
 riverctl map normal $altgr+Shift 0 set-view-tags 512
 #assigning tag to window
 
-riverctl map normal $alt 1 set-focused-tags 1
-riverctl map normal $alt 2 set-focused-tags 2
-riverctl map normal $alt 3 set-focused-tags 4
-riverctl map normal $alt 4 set-focused-tags 8
-riverctl map normal $alt 5 set-focused-tags 16
-riverctl map normal $alt 6 set-focused-tags 32
-riverctl map normal $alt 7 set-focused-tags 64
-riverctl map normal $alt 8 set-focused-tags 128
-riverctl map normal $alt 9 set-focused-tags 256
-riverctl map normal $alt 0 set-focused-tags 512
+riverctl map normal $super 1 set-focused-tags 1
+riverctl map normal $super 2 set-focused-tags 2
+riverctl map normal $super 3 set-focused-tags 4
+riverctl map normal $super 4 set-focused-tags 8
+riverctl map normal $super 5 set-focused-tags 16
+riverctl map normal $super 6 set-focused-tags 32
+riverctl map normal $super 7 set-focused-tags 64
+riverctl map normal $super 8 set-focused-tags 128
+riverctl map normal $super 9 set-focused-tags 256
+riverctl map normal $super 0 set-focused-tags 512
 
 tileInit
 riverctl focus-output next
