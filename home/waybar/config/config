@@ -1,0 +1,92 @@
+{
+	"layer": "top",
+		"position": "right",
+		"reload_style_on_change": true,
+		"modules-left": ["clock#time", "clock#date"],
+		"modules-center": ["river/tags"],
+		"modules-right": ["pulseaudio","bluetooth","network","battery"],
+
+
+		"pulseaudio": {
+			"format": "{icon} ",
+			"format-icons": [
+				"",
+				"",
+				"",
+			],
+			"format-alt": "{icon}\n{volume}%",
+			"format-muted": "󰝟"
+		},
+
+		"river/tags": {
+			"num-tags": 9,
+			"tag-labels": ["", "", " _", " _", " _", " _", " _", " _", " _", " _"],
+			"disable-click": true,
+			"expand": false
+		},
+
+		"clock#time": {
+			"format": "{:%H\n%M}",
+			"tooltip-format": "󰥔 {:%H:%M:%S}",
+			"interval": 1,   
+		},
+		"clock#date": {
+			"format": "{:%d\n%m}",
+			"interval": 1,
+			"tooltip-format": "󰃭 <tt>{calendar}</tt>",
+			"calendar": {
+				"format": {
+					"today": "<span color='#fAfBfC'><b>{}</b></span>"
+				}
+			}
+		},
+		"network": {
+			"format-wifi": " ",
+			"format-wifi-alt": "\n{essid}",
+			"format-ethernet":" {ifname}",
+			"format-disconnected": "",
+			"tooltip-format": "{essid}",
+			"tooltip-format-disconnected": "Error",
+			"tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+			"tooltip-format-ethernet": "{ifname} 🖧 "
+		},
+		"bluetooth": {
+			"format-on": "󰂯",
+			"format-off": "󰂲",
+			"format-disabled": "󰂲",
+			"format-connected": "",
+			"format-connected-battery": "",
+			"format-alt": "󰂯\n{device_battery_percentage}%",
+			"tooltip-format": "\n ",
+			"tooltip-format-connected": "{device_alias}\n{device_battery_percentage}%",
+			"tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
+			"tooltip-format-enumerate-conncted-battery": "{device_alias}\n{device_battery_percentage}%",
+		},
+		"battery": {
+			"interval":60,
+			"states": {
+				"good": 95,
+				"warning": 30,
+				"critical": 20
+			},
+			"format": "{icon}",
+			"format-charging": " 󱐋{icon}",
+			"format-charging-alt": " 󱐋{icon}\n{capacity}%",
+			"format-plugged": "",
+			"tooltip-format": "{capacity}%\n{time}",
+			"format-alt": "{icon}\n{capacity}%",
+			"format-icons": [
+				"󰁺",
+			"󰁻",
+			"󰁼",
+			"󰁽",
+			"󰁾",
+			"󰁿",
+			"󰂀",
+			"󰂁",
+			"󰂂",
+			"󰁹",
+			]
+		}
+}
+}

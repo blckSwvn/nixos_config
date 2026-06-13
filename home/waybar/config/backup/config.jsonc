@@ -2,7 +2,7 @@
 	"layer": "top",
 	"position": "bottom",
 	"reload_style_on_change": true,
-	"modules-left": ["clock", "pulseaudio"],
+	"modules-left": ["clock", "date", "pulseaudio"],
   "modules-center": ["river/tags"],
 	"modules-right": ["bluetooth","network","battery"],
 
@@ -20,7 +20,11 @@
 	},
 
 	"clock": {
-		"format": "󰥔 {:%H:%M   %d-%b}",
+		"format": "󰥔 {:%H:%M}",
+		"interval": 1   
+	},
+	"date": {
+		"format": " {%d-%b}",
 		"interval": 1,   
 		"tooltip-format": "<tt>{calendar}</tt>",
 		"calendar": {

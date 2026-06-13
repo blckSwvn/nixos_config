@@ -3,7 +3,7 @@
   #networking
   networking = {
     hostName = "Cyclops"; # Define your hostname.
-    networkmanager.enable = false;
+    networkmanager.enable = true;
     useNetworkd = true;
     firewall = {
       enable = true;
@@ -13,7 +13,7 @@
   };
 
   services.mullvad-vpn.enable = true;
-  networking.wireless.iwd.enable = true;
+  # networking.wireless.iwd.enable = true;
   services.dbus.enable = true;
 
 
@@ -39,5 +39,4 @@
     useDns = true;
     permitRootLogin = "no";
   };
-
 }

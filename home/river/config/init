@@ -36,8 +36,8 @@ riverctl send-layout-cmd rivercarro "main-location left"
 }
 riverctl focus-follows-cursor always
 
-riverctl border-color-focused 0x70b0ff
 riverctl border-color-unfocused 0x000000
+riverctl border-color-focused 0x000055
 riverctl border-width 1
 
 riverctl rule-add '*' float=false
@@ -55,36 +55,48 @@ riverctl rule-add -app-id librewolf tags 2
 riverctl rule-add -app-id steam tags 4
 riverctl rule-add -app-id librewolf fullscreen
 
+riverctl declare-mode sound
+riverctl map sound $alt n enter-mode normal
+riverctl map normal $alt s enter-mode sound
+riverctl map sound  $alt p spawn "playerctl play-pause & riverctl enter-mode normal"
+riverctl map sound  $alt+Shift l spawn "playerctl next" 
+riverctl map sound  $alt+Shift h spawn "playerctl previous"
+riverctl map sound  $alt+Shift k spawn "playerctl volume 0.1+"
+riverctl map sound  $alt+Shift j spawn "playerctl volume 0.1-"
+riverctl map sound  $alt k spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+"
+riverctl map sound  $alt j spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-"
+riverctl map sound  $alt m spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle & riverctl enter-mode normal" 
+riverctl map sound $alt l spawn "playerctl position 10+"
+riverctl map sound $alt h spawn "playerctl position 10-"
+
+riverctl declare-mode bright
+riverctl map bright $alt n enter-mode normal 
+riverctl map normal $alt b enter-mode bright
+riverctl map bright $alt k spawn "brightnessctl set 10%+"
+riverctl map bright $alt j spawn "brightnessctl set 10%-"
+riverctl map bright $alt+Shift j spawn "brightnessctl -d tpacpi::kbd_backlight set 1+"
+riverctl map bright $alt+Shift k spawn "brightnessctl -d tpacpi::kbd_backlight set 1-"
+
 #map aka binds
 #common lanching apps etc
 riverctl map normal Mod5 Space spawn "waypaper"
-riverctl map normal $alt s spawn "systemctl suspend"
-riverctl map normal $alt+Shift s spawn "waylock"
+# riverctl map normal $alt s spawn "systemctl suspend"
+# riverctl map normal $alt+Shift s spawn "waylock"
 riverctl map normal $alt t spawn foot
-riverctl map normal $alt b spawn librewolf
+riverctl map normal $super s spawn "systemctl suspend"
+riverctl map normal $super l spawn "waylock"
 riverctl map normal $alt f toggle-fullscreen
 riverctl map normal $alt q close
 riverctl map normal $altgr g spawn 'grim -g "$(slurp)" ~/pictures/$(date +%M:%H_%d-%m-%Y).png | wl-copy'
-
-riverctl map normal $alt Space spawn "wofi --show drun"
+riverctl map normal $alt Space spawn "bemenu-run -l 10"
 riverctl map normal $alt+Shift E exit
 riverctl map normal $altgr f toggle-float
 riverctl map normal $super+Shift s spawn "mullvad-exclude DRI_PRIME=0 steam"
 riverctl map normal $super+Shift m spawn "mullvad-exclude prismlauncher"
 
 #playerctl wpctl
-riverctl map normal $alt p spawn "playerctl play-pause"
-riverctl map normal $alt+Shift Right spawn "playerctl next" 
-riverctl map normal $alt+Shift Left spawn "playerctl previous"
-riverctl map normal $alt Up spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+"
-riverctl map normal $alt Down spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-"
-riverctl map normal $alt m spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle" 
 
 #brightness ctl
-riverctl map normal $alt+Shift Up spawn "brightnessctl set 10%+"
-riverctl map normal $alt+Shift Down spawn "brightnessctl set 10%-"
-riverctl map normal $alt+$altgr+Shift Up spawn "brightnessctl -d tpacpi::kbd_backlight set 1+"
-riverctl map normal $alt+$altgr+Shift Down spawn "brightnessctl -d tpacpi::kbd_backlight set 1-"
 
 riverctl map normal $alt+Shift h focus-output left 
 riverctl map normal $alt+Shift l send-to-output right
@@ -110,10 +122,7 @@ riverctl map normal $super+$mod k send-to-output upup
 riverctl map normal $super+$mod l send-to-output right
 riverctl map normal $super+Shift h send-layout-cmd rivercarro "main-ratio +0.1"
 riverctl map normal $super+Shift l send-layout-cmd rivercarro "main-ratio -0.1"
-# riverctl map normal $super+Shift j send-layout-cmd rivercarro "main-count -1"
-# riverctl map normal $super+Shift k send-layout-cmd rivercarro "main-count +1";
-# riverctl map normal $super+Shift c send-layout-cmd rivercarro "main-location-cycle left,top,right"
-#tags
+
 #switch what tag you see
 riverctl map normal $alt+Shift 1 toggle-focused-tags 1
 riverctl map normal $alt+Shift 2 toggle-focused-tags 2

@@ -14,7 +14,7 @@
     gnumake
     fzf
     vlc
-    wineWowPackages.full
+    # wineWowPackages.full
     powertop
     cowsay
     fortune
@@ -51,6 +51,9 @@
     foot
     mullvad
     mullvad-vpn
+    python3
+    python3Packages.dbus-python
+    bemenu
   ] ++ (with unstablePkgs; [
     i2p
     ]);

@@ -6,7 +6,7 @@
       ./home/fish/fish.nix
       ./home/nvim/nvim.nix
       ./home/kitty/kitty.nix
-      ./home/wofi/wofi.nix
+      # ./home/wofi/wofi.nix
       ./home/waybar/waybar.nix
       ./home/starship/starship.nix
       ./home/river/river.nix
@@ -32,7 +32,7 @@
   home.username = "blckSwan";
   home.homeDirectory = "/home/blckSwan";
 
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
 
   programs.home-manager.enable = true;
                                       }
