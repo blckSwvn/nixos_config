@@ -70,22 +70,21 @@
 				"critical": 20
 			},
 			"format": "{icon}",
-			"format-charging": " 󱐋{icon}",
-			"format-charging-alt": " 󱐋{icon}\n{capacity}%",
+			"format-charging": " 󱐋{icon}\n{capacity}%",
 			"format-plugged": "",
 			"tooltip-format": "{capacity}%\n{time}",
 			"format-alt": "{icon}\n{capacity}%",
 			"format-icons": [
 				"󰁺",
-			"󰁻",
-			"󰁼",
-			"󰁽",
-			"󰁾",
-			"󰁿",
-			"󰂀",
-			"󰂁",
-			"󰂂",
-			"󰁹",
+				"󰁻",
+				"󰁼",
+				"󰁽",
+				"󰁾",
+				"󰁿",
+				"󰂀",
+				"󰂁",
+				"󰂂",
+				"󰁹",
 			]
 		}
 }

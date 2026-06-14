@@ -53,7 +53,6 @@ super="Super"
 riverctl rule-add -app-id foot tags 1
 riverctl rule-add -app-id librewolf tags 2
 riverctl rule-add -app-id steam tags 4
-riverctl rule-add -app-id librewolf fullscreen
 
 riverctl declare-mode sound
 riverctl map sound $alt n enter-mode normal
@@ -88,7 +87,7 @@ riverctl map normal $super l spawn "waylock"
 riverctl map normal $alt f toggle-fullscreen
 riverctl map normal $alt q close
 riverctl map normal $altgr g spawn 'grim -g "$(slurp)" ~/pictures/$(date +%M:%H_%d-%m-%Y).png | wl-copy'
-riverctl map normal $alt Space spawn "bemenu-run -l 10"
+riverctl map normal $alt Space spawn "fuzzel"
 riverctl map normal $alt+Shift E exit
 riverctl map normal $altgr f toggle-float
 riverctl map normal $super+Shift s spawn "mullvad-exclude DRI_PRIME=0 steam"

@@ -28,7 +28,6 @@
     xwayland
     waylock
     swaybg
-    wofi
     playerctl
     wl-clipboard
     grim
@@ -53,7 +52,6 @@
     mullvad-vpn
     python3
     python3Packages.dbus-python
-    bemenu
   ] ++ (with unstablePkgs; [
     i2p
     ]);

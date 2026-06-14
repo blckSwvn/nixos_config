@@ -1,5 +1,8 @@
 if status --is-login
-	fortune|cowsay
+	echo "Welcome aboard, Captain. All systems online."
+end
+
+if status --is-login
 end
 
 if status is-interactive

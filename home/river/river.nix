@@ -17,6 +17,6 @@
       rivercarro
       xdg-desktop-portal
       xdg-desktop-portal-wlr
-      bemenu
+      fuzzel
   ];
                         }
