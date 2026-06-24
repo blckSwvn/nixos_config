@@ -6,7 +6,6 @@
     starship
     bash
     waypaper
-    bat
     git
     btop
     ripgrep
@@ -51,7 +50,11 @@
     mullvad
     mullvad-vpn
     python3
+    ruff
+    pyright
     python3Packages.dbus-python
+    gdb
+    tmux
   ] ++ (with unstablePkgs; [
     i2p
     ]);

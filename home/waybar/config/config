@@ -20,7 +20,7 @@
 
 		"river/tags": {
 			"num-tags": 9,
-			"tag-labels": ["", "", " _", " _", " _", " _", " _", " _", " _", " _"],
+			"tag-labels": ["", "", "󰕼", " _", " _", " _", " _", " _", " _", " _"],
 			"disable-click": true,
 			"expand": false
 		},

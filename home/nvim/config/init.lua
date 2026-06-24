@@ -9,17 +9,19 @@ vim.g.mapleader = " "
 vim.opt.termguicolors = true
 
 local m = vim.keymap.set
+m("n", "<leader>q", ":q<CR>")
 m("n", "<leader>y", '"+yy')
 m("v", "<leader>y", '"+y')
 m("n", "<leader>p", '"+p')
 m("n", "<leader>P", '"+P')
-m("n", "<C-d>", "<C-d>zz")
-m("n", "<C-u>", "<C-u>zz")
+m("n", "<A-j>", "<C-d>zz")
+m("n", "<A-k>", "<C-u>zz")
 m("n", "<leader>f", ":FzfLua files<CR>")
 m("n", "<leader>s", ":FzfLua lsp_workspace_symbols<CR>")
 m("n", "<leader>g", ":FzfLua grep<CR>")
 m("n", "<leader>b", ":FzfLua buffers<CR>")
 m("n", "<leader>z", ":FzfLua<CR>")
+m("n", "<leader>d", ":FzfLua diagnostics_document<CR>")
 m("n", "<leader>wv", "<C-w>v")
 m("n", "<leader>wh", "<C-w>s")
 m("n", "<leader>h",  "<C-w>h")
@@ -57,6 +59,10 @@ end
 
 
 vim.pack.add({
+	{src = "https://github.com/leath-dub/snipe.nvim"},
+	-- {src = "https://github.com/nvim-tree/nvim-web-devicons"},
+	{src = "https://github.com/cbochs/grapple.nvim"},
+	{src = "https://github.com/kylechui/nvim-surround"},
 	{src = "https://github.com/windwp/nvim-autopairs"},
 	{src = "https://github.com/ibhagwan/fzf-lua"},
 	{src = "https://github.com/neovim/nvim-lspconfig"},
@@ -68,6 +74,34 @@ vim.pack.add({
 	{src = "https://github.com/lewis6991/gitsigns.nvim"},
 })
 
+require("snipe").setup(
+{
+  ui = {
+    ---@type "topleft"|"bottomleft"|"topright"|"bottomright"|"center"|"cursor"
+    position = "center",
+      border = "single", -- use "rounded" for rounded border
+    },
+
+    -- Preselect the currently open buffer
+    preselect_current = true,
+    -- Whether to remember mappings from bufnr -> tag
+    persist_tags = true,
+  navigate = {
+    next_page = "J",
+    prev_page = "K",
+
+    under_cursor = "<Space>",
+    close_buffer = "D",
+    open_vsplit = "V",
+    open_split = "H",
+
+    -- Change tag manually (note only works if `persist_tags` is not enabled)
+    -- change_tag = "C",
+  },
+  sort = "last",
+}
+)
+m("n", "s", require("snipe").open_buffer_menu)
 require("nvim-autopairs").setup()
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()

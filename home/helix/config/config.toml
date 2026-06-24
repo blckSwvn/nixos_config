@@ -3,10 +3,6 @@ theme = "mytheme"
 [editor]
 line-number = "relative"
 cursorline = true
-end-of-line-diagnostics = "error"
-
-[editor.inline-diagnostics]
-cursor-line = "warning"
 
 [editor.cursor-shape]
 insert = "bar"

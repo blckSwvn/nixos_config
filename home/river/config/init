@@ -83,8 +83,8 @@ riverctl map normal Mod5 Space spawn "waypaper"
 # riverctl map normal $alt+Shift s spawn "waylock"
 riverctl map normal $alt t spawn foot
 riverctl map normal $super s spawn "systemctl suspend"
-riverctl map normal $super l spawn "waylock"
-riverctl map normal $alt f toggle-fullscreen
+riverctl map normal $super+Shift l spawn "waylock"
+riverctl map normal $super f toggle-fullscreen
 riverctl map normal $alt q close
 riverctl map normal $altgr g spawn 'grim -g "$(slurp)" ~/pictures/$(date +%M:%H_%d-%m-%Y).png | wl-copy'
 riverctl map normal $alt Space spawn "fuzzel"
