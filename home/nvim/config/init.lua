@@ -60,8 +60,8 @@ end
 
 vim.pack.add({
 	{src = "https://github.com/leath-dub/snipe.nvim"},
-	-- {src = "https://github.com/nvim-tree/nvim-web-devicons"},
-	{src = "https://github.com/cbochs/grapple.nvim"},
+	--{src = "https://github.com/kungfusheep/snipe-lsp.nvim"},
+	{src = "https://github.com/nvim-tree/nvim-web-devicons"},
 	{src = "https://github.com/kylechui/nvim-surround"},
 	{src = "https://github.com/windwp/nvim-autopairs"},
 	{src = "https://github.com/ibhagwan/fzf-lua"},

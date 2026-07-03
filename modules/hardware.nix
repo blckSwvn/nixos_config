@@ -8,25 +8,37 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true; #enable for qemu/quickemu
-    wireplumber.extraConfig = {
-      "60-audio-priority" = {
-        "monitor.bluez.rules" = [
+      wireplumber.extraConfig = {
+        "60-audio-priority" = {
+          "monitor.bluez.rules" = [
           {
             matches = [
-              { "node.name" = "bluez_output.80_C3_BA_0A_65_99.1"; }
+            {"node.name" = "bluez_output.80:C3:BA:0A:65:99";}
             ];
             actions = {
               update-props = {
-                "priority.session" = 3000;
+                "priority.session" = 4000;
               };
             };
           }
-        ];
+          ];
+# "monitor.bluez.rules" = [
+#   {
+#     matches = [
+#       { "node.name" = "bluez_output.80_C3_BA_0A_65_99.1"; }
+#     ];
+#     actions = {
+#       update-props = {
+#         "priority.session" = 3000;
+#       };
+#     };
+#   }
+# ];
 
-        "monitor.alsa.rules" = [
+          "monitor.alsa.rules" = [
           {
             matches = [
-              { "node.name" = "alsa_output.pci-0000_c6_00.1.HiFi__HDMI2__sink"; }
+            { "node.name" = "alsa_output.pci-0000_c6_00.1.HiFi__HDMI2__sink"; }
             ];
             actions = {
               update-props = {
@@ -36,7 +48,7 @@
           }
           {
             matches = [
-              { "node.name" = "alsa_output.pci-0000_c6_00.6.HiFi__Speaker__sink"; }
+            { "node.name" = "alsa_output.pci-0000_c6_00.6.HiFi__Speaker__sink"; }
             ];
             actions = {
               update-props = {
@@ -44,9 +56,9 @@
               };
             };
           }
-        ];
+          ];
+        };
       };
-    };
   };
 
   #bloat

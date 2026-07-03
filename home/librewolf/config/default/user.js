@@ -1,5 +1,6 @@
 //dont work with RFP
-// user_pref("ui.systemUsesDarkTheme", 1);
+user_pref("ui.systemUsesDarkTheme", 1);
+
 // user_pref("browser.theme.system_theme", false);
 user_pref("browser.fullscreen.autohide", false);
 user_pref("privacy.resistFingerprinting.spoofOsInUserAgentHeader", false); //bugy as hell
@@ -65,14 +66,7 @@ user_pref("browser.uidensity", 1);
 // Disable battery API
 user_pref("dom.battery.enabled", false);
 
-// Reduce timing precision (helps against timing attacks)
-user_pref("privacy.reduceTimerPrecision", true);
-user_pref("privacy.reduceTimerPrecision.jitter", 50);
-
 // Disable resource and performance timing APIs
-user_pref("dom.enable_performance", false);
-user_pref("dom.enable_resource_timing", false);
-user_pref("dom.enable_user_timing", false);
 
 // Telemetry and data reporting
 user_pref("toolkit.telemetry.enabled", false);

@@ -2,6 +2,10 @@
 
   #packages
   environment.systemPackages = with pkgs; [
+    typst
+    tinymist
+    typstyle
+    zathura
     cmus
     starship
     bash
@@ -55,6 +59,7 @@
     python3Packages.dbus-python
     gdb
     tmux
+    firefox
   ] ++ (with unstablePkgs; [
     i2p
     ]);
@@ -74,6 +79,8 @@
       ids = [ "*" ];
       settings = {
         main = {
+         print = "esc";
+          prtsc = "esc";
           capslock = "esc";
         };
       };
