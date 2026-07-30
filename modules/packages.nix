@@ -6,7 +6,6 @@
     tinymist
     typstyle
     zathura
-    cmus
     starship
     bash
     waypaper
@@ -60,15 +59,27 @@
     gdb
     tmux
     firefox
+    yt-dlp
+    mpv
+    libreoffice
+    opam
+    perl
+    dune
+    ocamlPackages.utop
+    ocamlPackages.ocaml-lsp
+    man-pages
+    gucharmap
   ] ++ (with unstablePkgs; [
     i2p
     ]);
 
   fonts.packages = with pkgs; [
+    inter
+    noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
     jetbrains-mono
-    nerd-fonts.meslo-lg
+    nerd-fonts.blex-mono
   ];
 
   #fonts.packages = [ ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
@@ -79,8 +90,6 @@
       ids = [ "*" ];
       settings = {
         main = {
-         print = "esc";
-          prtsc = "esc";
           capslock = "esc";
         };
       };

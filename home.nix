@@ -2,7 +2,6 @@
 
   imports = [
       ./home/librewolf/librewolf.nix
-      ./home/helix/helix.nix
       ./home/tmux/tmux.nix
       ./home/fish/fish.nix
       ./home/nvim/nvim.nix

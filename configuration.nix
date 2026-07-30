@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -35,6 +35,8 @@
       };
     };
   };
+
+  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
   # Configure console keymap
   console.keyMap = "no";

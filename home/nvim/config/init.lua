@@ -9,6 +9,7 @@ vim.g.mapleader = " "
 vim.opt.termguicolors = true
 
 local m = vim.keymap.set
+m("n", "<A-o>", ":Oil<CR>")
 m("n", "<leader>q", ":q<CR>")
 m("n", "<leader>y", '"+yy')
 m("v", "<leader>y", '"+y')
@@ -60,7 +61,7 @@ end
 
 vim.pack.add({
 	{src = "https://github.com/leath-dub/snipe.nvim"},
-	--{src = "https://github.com/kungfusheep/snipe-lsp.nvim"},
+	{src = "https://github.com/stevearc/oil.nvim"},
 	{src = "https://github.com/nvim-tree/nvim-web-devicons"},
 	{src = "https://github.com/kylechui/nvim-surround"},
 	{src = "https://github.com/windwp/nvim-autopairs"},
@@ -73,6 +74,8 @@ vim.pack.add({
 	{src = "https://github.com/hrsh7th/cmp-path" },
 	{src = "https://github.com/lewis6991/gitsigns.nvim"},
 })
+
+require("oil").setup()
 
 require("snipe").setup(
 {
