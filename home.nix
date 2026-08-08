@@ -2,10 +2,12 @@
 
   imports = [
       ./home/librewolf/librewolf.nix
+      ./home/helix/helix.nix
       ./home/tmux/tmux.nix
       ./home/fish/fish.nix
       ./home/nvim/nvim.nix
-      ./home/kitty/kitty.nix
+      ./home/foot/foot.nix
+      # ./home/kitty/kitty.nix
       ./home/waybar/waybar.nix
       ./home/starship/starship.nix
       ./home/river/river.nix

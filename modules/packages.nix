@@ -1,7 +1,6 @@
 { pkgs, unstablePkgs, ... } : {
-
-  #packages
   environment.systemPackages = with pkgs; [
+    wineWow64Packages.full
     typst
     tinymist
     typstyle
@@ -54,7 +53,7 @@
     mullvad-vpn
     python3
     ruff
-    pyright
+    basedpyright
     python3Packages.dbus-python
     gdb
     tmux
@@ -68,8 +67,10 @@
     ocamlPackages.utop
     ocamlPackages.ocaml-lsp
     man-pages
-    gucharmap
+    emacs
+    signal-desktop
   ] ++ (with unstablePkgs; [
+    librewolf
     i2p
     ]);
 
@@ -95,6 +96,25 @@
       };
     };
   };
+  programs.obs-studio = {
+  enable = true;
+  enableVirtualCamera = true;
+
+    package = (
+      pkgs.obs-studio.override {
+        cudaSupport = true;
+      }
+    );
+
+  plugins = with pkgs.obs-studio-plugins; [
+      wlrobs
+      obs-backgroundremoval
+      obs-vaapi
+      obs-gstreamer
+      obs-vkcapture
+     obs-pipewire-audio-capture
+         ];
+};
 
   programs.steam = {
     enable = true;
@@ -107,6 +127,5 @@
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
 
-  #for dynamic linking
   programs.nix-ld.enable = true;
 }

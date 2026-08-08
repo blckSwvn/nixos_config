@@ -67,9 +67,9 @@
 
   services.logind.settings.Login = {
     handleLidSwitch = "suspend";
-    HandleLidSwitchDocked = "ignore";
+      HandleLidSwitchDocked = "suspend";
     IdleAction = "suspend";
-    IdleActionSec = "20min";
+    IdleActionSec = "8min";
   };
 
   programs.man.enable = true;

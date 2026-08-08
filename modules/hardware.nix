@@ -88,7 +88,7 @@
   #cpu optimization
   services.tlp = {
     enable = true;
-    settings = {
+      settings = {
       CPU_SCALING_GOVERN_ON_AC = "performance";
       CPU_SCALING_GOVERN_ON_BAT = "powersave";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";

@@ -1,0 +1,27 @@
+theme = "4"
+
+[editor]
+scrolloff = 0
+line-number = "relative"
+cursorline = true
+lsp.display-inlay-hints = true
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "error" # Show inline diagnostics when the cursor is on the line
+other-lines = "disable" # Don't expand diagnostics unless the cursor is on the line
+
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.soft-wrap]
+enable = true
+
+[editor.gutters]
+layout = ["diff", "diagnostics", "line-numbers", "spacer"]
+
+[keys.normal]
+X = "select_line_above"
