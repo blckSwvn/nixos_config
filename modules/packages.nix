@@ -67,7 +67,6 @@
     ocamlPackages.utop
     ocamlPackages.ocaml-lsp
     man-pages
-    emacs
     signal-desktop
   ] ++ (with unstablePkgs; [
     librewolf
@@ -107,14 +106,14 @@
     );
 
   plugins = with pkgs.obs-studio-plugins; [
-      wlrobs
-      obs-backgroundremoval
-      obs-vaapi
-      obs-gstreamer
-      obs-vkcapture
-     obs-pipewire-audio-capture
-         ];
-};
+       wlrobs
+       obs-backgroundremoval
+       obs-vaapi
+       obs-gstreamer
+       obs-vkcapture
+       obs-pipewire-audio-capture
+    ];
+  };
 
   programs.steam = {
     enable = true;

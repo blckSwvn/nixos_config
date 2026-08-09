@@ -7,6 +7,7 @@
       ./home/fish/fish.nix
       ./home/nvim/nvim.nix
       ./home/foot/foot.nix
+      ./home/fuzzel/fuzzel.nix
       # ./home/kitty/kitty.nix
       ./home/waybar/waybar.nix
       ./home/starship/starship.nix
