@@ -6,7 +6,7 @@ user_pref("browser.fullscreen.autohide", false);
 
 user_pref("browser.toolbars.bookmarks.visibility", "never");
 
-user_pref("privacy.resistFingerprinting", true);
+// user_pref("privacy.resistFingerprinting", true);
 user_pref("privacy.trackingprotection.enabled", true);
 
 // Force HTTPS

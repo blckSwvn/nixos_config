@@ -1,11 +1,13 @@
 { config, pkgs, ... } : {
 
-	home.file.".config/kitty" = {
+	home.file.".config/mpv" = {
 		source = ./config;
 		recursive = true;
 	};
 
 	home.packages = with pkgs; [
-		kitty
-	];
-			}
+	(mpv.override {
+	    scripts = [ mpvScripts.mpris ];
+	  })
+  ];
+}

@@ -13,7 +13,7 @@
   };
 
   services.mullvad-vpn.enable = true;
-  # networking.wireless.iwd.enable = true;
+  # networking.wireless.iwd.enable = true; does not work easily with eduroam
   services.dbus.enable = true;
 
 

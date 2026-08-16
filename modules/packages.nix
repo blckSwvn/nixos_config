@@ -14,7 +14,6 @@
     parted
     gnumake
     fzf
-    vlc
     # wineWowPackages.full
     powertop
     cowsay
@@ -59,7 +58,6 @@
     tmux
     firefox
     yt-dlp
-    mpv
     libreoffice
     opam
     perl
@@ -68,6 +66,8 @@
     ocamlPackages.ocaml-lsp
     man-pages
     signal-desktop
+    ncdu
+    android-tools
   ] ++ (with unstablePkgs; [
     librewolf
     i2p
@@ -114,6 +114,8 @@
        obs-pipewire-audio-capture
     ];
   };
+
+  services.gvfs.enable = true;
 
   programs.steam = {
     enable = true;
