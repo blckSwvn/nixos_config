@@ -1,6 +1,7 @@
 { pkgs, unstablePkgs, ... } : {
   environment.systemPackages = with pkgs; [
     wineWow64Packages.full
+    unrar
     typst
     tinymist
     typstyle
@@ -14,7 +15,6 @@
     parted
     gnumake
     fzf
-    # wineWowPackages.full
     powertop
     cowsay
     fortune

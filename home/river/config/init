@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
-pkill waybar
-
-export XDG_CURRENT_DESKTOP=river
-export XDG_SESSION_TYPE=wayland
-export XDG_SESSION_DESKTOP=river
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-export INPUT_METHOD=fcitx
-export SDL_IM_MODULE=fcitx
+export \
+XDG_CURRENT_DESKTOP=river \
+XDG_SESSION_TYPE=wayland \
+XDG_SESSION_DESKTOP=river \
+GTK_IM_MODULE=fcitx \
+QT_IM_MODULE=fcitx \
+XMODIFIERS=@im=fcitx \
+INPUT_METHOD=fcitx \
+SDL_IM_MODULE=fcitx
 
 systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
 systemctl --user start xdg-desktop-portal-wlr.service &
@@ -17,149 +16,138 @@ systemctl --user start xdg-desktop-portal.service &
 swaybg -i $HOME/pictures/wallpapers/wallpaper4.* &
 
 fcitx5 &
+pkill waybar
 waybar &
 brightnessctl -d intel_backlight set 0 && brightnessctl -d tpacpi::kbd_backlight set 2 &
 
+r(){
+  riverctl "$@"
+  }
+
 #startup
-riverctl xcursor-theme Bibata-Modern-Ice
+r xcursor-theme Bibata-Modern-Ice
 tileInit() {
 rivercarro &
-riverctl default-layout rivercarro
-riverctl send-layout-cmd rivercarro "main-count 1"
-riverctl send-layout-cmd rivercarro "main-ratio 0.5"
-riverctl send-layout-cmd rivercarro "width-ratio 1"
-riverctl send-layout-cmd rivercarro "no-smart-gaps"
-riverctl send-layout-cmd rivercarro "no-smart-gaps"
-riverctl send-layout-cmd rivercarro "inner-gaps 8"
-riverctl send-layout-cmd rivercarro "outer-gaps 5"
-riverctl send-layout-cmd rivercarro "main-location left"
+r default-layout rivercarro
+r send-layout-cmd rivercarro "main-count 1"
+r send-layout-cmd rivercarro "main-ratio 0.5"
+r send-layout-cmd rivercarro "width-ratio 1"
+r send-layout-cmd rivercarro "no-smart-gaps"
+r send-layout-cmd rivercarro "no-smart-gaps"
+r send-layout-cmd rivercarro "inner-gaps 8"
+r send-layout-cmd rivercarro "outer-gaps 5"
+r send-layout-cmd rivercarro "main-location left"
 }
-riverctl focus-follows-cursor always
+tileInit
+r focus-follows-cursor always
 
-riverctl border-color-unfocused 0x000000
-riverctl border-color-focused 0x000055
-riverctl border-width 1
+r border-color-unfocused 0x000000
+r border-color-focused 0x000055
+r border-width 1
 
-riverctl rule-add '*' float=false
+# r rule-add '*' float=false
 
 #input lang
-riverctl keyboard-layout no
+r keyboard-layout no
 
-alt="Mod1"
-altgr="Mod5"
-super="Super"
+a="Mod1"
+g="Mod5"
+s="Super"
 
-#rules
-riverctl rule-add -app-id foot tags 1
-riverctl rule-add -app-id librewolf tags 2
-riverctl rule-add -app-id steam tags 4
+#cuz normal is awfully long for waybar
+r declare-mode n
+r enter-mode n
 
-riverctl declare-mode sound
-riverctl map sound $alt n enter-mode normal
-riverctl map normal $alt s enter-mode sound
-riverctl map sound  $alt p spawn "playerctl play-pause & riverctl enter-mode normal"
-riverctl map sound  $alt+Shift l spawn "playerctl next" 
-riverctl map sound  $alt+Shift h spawn "playerctl previous"
-riverctl map sound  $alt+Shift k spawn "playerctl volume 0.1+"
-riverctl map sound  $alt+Shift j spawn "playerctl volume 0.1-"
-riverctl map sound  $alt k spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+"
-riverctl map sound  $alt j spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-"
-riverctl map sound  $alt m spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle & riverctl enter-mode normal" 
-riverctl map sound $alt l spawn "playerctl position 10+"
-riverctl map sound $alt h spawn "playerctl position 10-"
+r declare-mode s
+r map n $s s enter-mode s
+r map s None escape enter-mode n
+r map s None m spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+r map s None space spawn "playerctl play-pause"
+r map s None h spawn "playerctl previous"
+r map s None j spawn "playerctl volume 0.1-"
+r map s None k spawn "playerctl volume 0.1+"
+r map s None l spawn "playerctl next"
+r map s None+Shift h spawn "playerctl position 5%-"
+r map s None+Shift j spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-"
+r map s None+Shift k spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+"
+r map s None+Shift l spawn "playerctl position 5%+"
 
-riverctl declare-mode bright
-riverctl map bright $alt n enter-mode normal 
-riverctl map normal $alt b enter-mode bright
-riverctl map bright $alt k spawn "brightnessctl set 10%+"
-riverctl map bright $alt j spawn "brightnessctl set 10%-"
-riverctl map bright $alt+Shift j spawn "brightnessctl -d tpacpi::kbd_backlight set 1+"
-riverctl map bright $alt+Shift k spawn "brightnessctl -d tpacpi::kbd_backlight set 1-"
+r declare-mode b
+r map n $s b enter-mode b
+r map b None escape enter-mode n
+r map b None j spawn "brightnessctl set 10%-"
+r map b None k spawn "brightnessctl set 10%+"
 
-#map aka binds
-#common lanching apps etc
-riverctl map normal Mod5 Space spawn "waypaper"
-# riverctl map normal $alt s spawn "systemctl suspend"
-# riverctl map normal $alt+Shift s spawn "waylock"
-riverctl map normal $alt t spawn foot
-riverctl map normal $super s spawn "systemctl suspend"
-riverctl map normal $super+Shift l spawn "waylock"
-riverctl map normal $super f toggle-fullscreen
-riverctl map normal $alt q close
-riverctl map normal $altgr g spawn 'grim -g "$(slurp)" ~/pictures/$(date +%M:%H_%d-%m-%Y).png | wl-copy'
-riverctl map normal $alt Space spawn "fuzzel"
-riverctl map normal $alt+Shift E exit
-riverctl map normal $altgr f toggle-float
-riverctl map normal $super+Shift s spawn "mullvad-exclude DRI_PRIME=0 steam"
-riverctl map normal $super+Shift m spawn "mullvad-exclude prismlauncher"
+tags=(1 2 4 8 16 32 64 128 256 512)
+keys=(1 2 3 4 5 6 7 8 9 0)
 
-#playerctl wpctl
+r declare-mode w
+r map n $s w enter-mode w
+r map w None escape enter-mode n
+r map w None f toggle-float 
+r map w None q close
 
-#brightness ctl
+r map w None h focus-view left
+r map w None j focus-view down 
+r map w None k focus-view up 
+r map w None l focus-view right
 
-riverctl map normal $alt+Shift h focus-output left 
-riverctl map normal $alt+Shift l send-to-output right
+r map w None+Shift h swap left 
+r map w None+Shift j swap down 
+r map w None+Shift k swap up 
+r map w None+Shift l swap right
 
-#navigation
-riverctl map normal $super h focus-view left
-riverctl map normal $super l focus-view right
-riverctl map normal $super j focus-view down
-riverctl map normal $super k focus-view up
+r map w $g h resize horizontal -100
+r map w $g j resize vertical +100
+r map w $g k resize vertical -100
+r map w $g l resize horizontal +100
 
-#snap FLOATING windows
-riverctl map normal $altgr h snap left
-riverctl map normal $altgr l snap right
-riverctl map normal $altgr j snap down
-riverctl map normal $altgr k snap up
-riverctl map normal $super+shift h focus-output left
-riverctl map normal $super+shift j focus-output down
-riverctl map normal $super+shift k focus-output upup
-riverctl map normal $super+shift l focus-output right
-riverctl map normal $super+$mod h send-to-output left
-riverctl map normal $super+$mod j send-to-output down
-riverctl map normal $super+$mod k send-to-output upup
-riverctl map normal $super+$mod l send-to-output right
-riverctl map normal $super+Shift h send-layout-cmd rivercarro "main-ratio +0.1"
-riverctl map normal $super+Shift l send-layout-cmd rivercarro "main-ratio -0.1"
+r map w $s h send-layout-cmd rivercarro "main-ratio -0.1"
+r map w $s j send-layout-cmd rivercarro "main-count -1"
+r map w $s k send-layout-cmd rivercarro "main-count +1"
+r map w $s l send-layout-cmd rivercarro "main-ratio +0.1"
+r map w None c send-layout-cmd rivercarro "main-location-cycle top,bottom,left,right"
 
-#switch what tag you see
-riverctl map normal $alt+Shift 1 toggle-focused-tags 1
-riverctl map normal $alt+Shift 2 toggle-focused-tags 2
-riverctl map normal $alt+Shift 3 toggle-focused-tags 4
-riverctl map normal $alt+Shift 4 toggle-focused-tags 8
-riverctl map normal $alt+Shift 5 toggle-focused-tags 16
-riverctl map normal $alt+Shift 6 toggle-focused-tags 32
-riverctl map normal $alt+Shift 7 toggle-focused-tags 64
-riverctl map normal $alt+Shift 8 toggle-focused-tags 128
-riverctl map normal $alt+Shift 9 toggle-focused-tags 256
-riverctl map normal $alt+Shift 0 toggle-focused-tags 512
+r map w $a h snap left
+r map w $a j snap down
+r map w $a k snap up
+r map w $a l snap right
+r map w $a+Shift h move left +100
+r map w $a+Shift j move down +100
+r map w $a+Shift k move down -100
+r map w $a+Shift l move left -100
 
-riverctl map normal $altgr+Shift 1 set-view-tags 1
-riverctl map normal $altgr+Shift 2 set-view-tags 2
-riverctl map normal $altgr+Shift 3 set-view-tags 4
-riverctl map normal $altgr+Shift 4 set-view-tags 8
-riverctl map normal $altgr+Shift 5 set-view-tags 16
-riverctl map normal $altgr+Shift 6 set-view-tags 32
-riverctl map normal $altgr+Shift 7 set-view-tags 64
-riverctl map normal $altgr+Shift 8 set-view-tags 128
-riverctl map normal $altgr+Shift 9 set-view-tags 256
-riverctl map normal $altgr+Shift 0 set-view-tags 512
-#assigning tag to window
+for i in "${!keys[@]}"; do
+  key=${keys[$i]}
+  tag=${tags[$i]}
+  r map w "None" "$key" set-view-tags "$tag"
+  r map w "$a" "$key" toggle-view-tags "$tag"
+  r map w "$s" "$key" spawn "riverctl set-focused-tags $tag; riverctl enter-mode n"
+  done
 
-riverctl map normal $super 1 set-focused-tags 1
-riverctl map normal $super 2 set-focused-tags 2
-riverctl map normal $super 3 set-focused-tags 4
-riverctl map normal $super 4 set-focused-tags 8
-riverctl map normal $super 5 set-focused-tags 16
-riverctl map normal $super 6 set-focused-tags 32
-riverctl map normal $super 7 set-focused-tags 64
-riverctl map normal $super 8 set-focused-tags 128
-riverctl map normal $super 9 set-focused-tags 256
-riverctl map normal $super 0 set-focused-tags 512
+r map n $a+Shift e exit
+r map n $a Space spawn "fuzzel"
+r map n $g Space spawn "waylock"
+r map n $a t spawn "foot"
+r map n $a b spawn "librewolf"
 
-tileInit
-riverctl focus-output next
-tileInit
+r map n $s f toggle-fullscreen
+r map n $s l spawn "systemctl suspend"
 
-wlr-randr --output HDMI-A-1 --pos 0,0
-wlr-randr --output eDP-1 --pos 1920,0
+r map n $s h focus-view left
+r map n $s l focus-view right
+r map n $s j focus-view down
+r map n $s k focus-view up
+
+r map n $s+Shift h focus-output left
+r map n $s+Shift j focus-output down
+r map n $s+Shift k focus-output up
+r map n $s+Shift l focus-output right
+
+
+for i in "${!keys[@]}"; do
+  key=${keys[$i]}
+  tag=${tags[$i]}
+  r map n "$s" "$key" set-focused-tags "$tag"
+  r map n "$s+Shift" "$key" toggle-focused-tags "$tag"
+done

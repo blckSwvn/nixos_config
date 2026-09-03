@@ -1,6 +1,7 @@
 theme = "4"
 
 [editor]
+text-width = 100
 scrolloff = 0
 line-number = "relative"
 cursorline = true
@@ -27,4 +28,7 @@ enable = true
 layout = ["diff", "diagnostics", "line-numbers", "spacer"]
 
 [keys.normal]
+X = "select_line_above"
+
+[keys.select]
 X = "select_line_above"
