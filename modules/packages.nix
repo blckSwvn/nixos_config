@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     wineWow64Packages.full
     unrar
+    blender
     typst
     tinymist
     typstyle

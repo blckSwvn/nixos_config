@@ -18,5 +18,7 @@
       xdg-desktop-portal
       xdg-desktop-portal-wlr
       fuzzel
+      grim
+      slurp
   ];
                         }

@@ -1,0 +1,13 @@
+[[language]]
+name = "rust"
+language-servers = ["rust-analyzer"]
+
+[language-server.rust-analyzer.config]
+procMacro.enable = true
+# [language-server.rust-analyzer.config.check]
+# overrideCommand = [
+#   "bevy_lint",
+#   "--workspace",
+#   "--all-targets",
+#   "--message-format=json"
+# ]

@@ -13,7 +13,9 @@ systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESS
 systemctl --user start xdg-desktop-portal-wlr.service &
 systemctl --user start xdg-desktop-portal.service &
 
-swaybg -i $HOME/pictures/wallpapers/wallpaper4.* &
+swaybg -i $HOME/Wallpapers/wallpaper1.* --mode fill &
+
+#wlr-randr --output eDP-1 --off
 
 fcitx5 &
 pkill waybar
@@ -40,6 +42,9 @@ r send-layout-cmd rivercarro "main-location left"
 }
 tileInit
 r focus-follows-cursor always
+r hide-cursor when-typing enabled
+r hide-cursor timeout 2000
+r set-cursor-warp on-output-change
 
 r border-color-unfocused 0x000000
 r border-color-focused 0x000055
@@ -125,6 +130,7 @@ for i in "${!keys[@]}"; do
   r map w "$s" "$key" spawn "riverctl set-focused-tags $tag; riverctl enter-mode n"
   done
 
+r map n $s g spawn 'grim -g \"$(slurp)\" - | tee ~/Pictures/screenshot-$(date +%F_%H-%M-%S).png | wl-copy'
 r map n $a+Shift e exit
 r map n $a Space spawn "fuzzel"
 r map n $g Space spawn "waylock"

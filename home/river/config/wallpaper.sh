@@ -1,33 +1,37 @@
 #!/usr/bin/env bash
 
-WALLPAPER_DIR="$HOME/pictures/wallpapers"
-WALLPAPERS=("$WALLPAPER_DIR"/*)
+WALLPAPER_DIR="$HOME/Wallpapers"
+STATE_FILE="$HOME/.cache/current_wallpaper_index"
 
-if [ ${#WALLPAPERS[@]} -eq 0 ]; then
-    echo "No wallpapers found in $WALLPAPER_DIR"
-    exit 1
-fi
+mkdir -p "$(dirname "$STATE_FILE")"
 
-# Pick a random wallpaper
-NEW_WALLPAPER="${WALLPAPERS[RANDOM % ${#WALLPAPERS[@]}]}"
+mapfile -t WALLPAPERS < <(find "$WALLPAPER_DIR" -type f | sort)
 
-# Kill existing swaybg instances
-# pkill swaybg 2>/dev/null
+[ ${#WALLPAPERS[@]} -eq 0 ] && exit 1
 
-# Set wallpaper
-if command -v swaybg >/dev/null 2>&1; then
-    swaybg -i "$NEW_WALLPAPER" -m fill &
-    NEW_PID=$!
+if [ -f "$STATE_FILE" ]; then
+    INDEX=$(cat "$STATE_FILE")
 else
-    exit 1
+    INDEX=0
 fi
 
-# Give it a moment to start
-sleep 0.1
+case "$1" in
+    next)
+        INDEX=$((INDEX + 1))
+        ;;
+    prev)
+        INDEX=$((INDEX - 1))
+        ;;
+    *)
+        echo "Usage: $0 {next|prev}"
+        exit 1
+        ;;
+esac
 
-# Kill all other swaybg processes except the new one
-for pid in $(pgrep swaybg); do
-    if [ "$pid" -ne "$NEW_PID" ]; then
-        kill "$pid"
-    fi
-done
+# Wrap around
+INDEX=$(( (INDEX + ${#WALLPAPERS[@]}) % ${#WALLPAPERS[@]} ))
+
+echo "$INDEX" > "$STATE_FILE"
+
+pkill swaybg
+swaybg -i "${WALLPAPERS[$INDEX]}" --mode fill &
